@@ -127,59 +127,6 @@
       border: 2px solid var(--primary);
     }
 
-    /* ── 課程大綱卡片 (雙月會時程表) ── */
-    .section-title {
-      font-size: 1.1em;
-      font-weight: 700;
-      color: var(--primary);
-      border-left: 4px solid var(--accent);
-      padding-left: 10px;
-      margin-bottom: 16px;
-      text-align: left;
-    }
-    
-    .card {
-      background: var(--light);
-      border-radius: 12px;
-      padding: 24px 28px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow);
-    }
-
-    .program-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.88em;
-      margin-top: 10px;
-    }
-    .program-table th {
-      border-bottom: 2px solid rgba(61,90,120,0.15);
-      padding: 10px 8px;
-      text-align: left;
-      color: var(--primary);
-      font-weight: 700;
-    }
-    .program-table td {
-      padding: 12px 8px;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      vertical-align: middle;
-    }
-    .program-table tr:last-child td {
-      border-bottom: none;
-    }
-    .program-table tr.highlight {
-      background: rgba(78,122,90,0.08);
-      font-weight: 500;
-    }
-    .program-table tr.highlight td:nth-child(2) {
-      color: var(--accent);
-      font-weight: 700;
-    }
-    .text-muted {
-      color: #666;
-      font-size: 0.85em;
-    }
-
     /* ── 講義領取表單 ── */
     .form-box {
       background: #fff;
@@ -316,10 +263,8 @@
   <!-- 快速連結 -->
   <div class="cta-row">
     <a href="handout.html" class="btn btn-primary"><i class="fa-solid fa-book-open"></i> 閱讀線上講義與互動測驗</a>
-    <a href="1140703 特殊族群抗結核藥物劑量調整.pptx" class="btn btn-outline" download><i class="fa-regular fa-file-powerpoint"></i> 下載課程簡報 PPTX</a>
+    <a href="透析患者抗結核用藥_簡報.pptx" class="btn btn-outline" download><i class="fa-regular fa-file-powerpoint"></i> 下載課程簡報 PPTX</a>
   </div>
-
-
 
   <!-- 講義領取 -->
   <div class="form-box">
@@ -373,10 +318,10 @@
       return;
     }
 
-    // 觸發講義下載 (下載 Markdown/PDF 與 PPTX)
+    // 觸發講義下載
     [
       { href: '透析患者抗結核用藥_講義.md', name: '透析患者抗結核用藥_講義.md' },
-      { href: '1140703 特殊族群抗結核藥物劑量調整.pptx', name: '特殊族群抗結核藥物劑量調整.pptx' }
+      { href: '透析患者抗結核用藥_簡報.pptx', name: '透析患者抗結核用藥_簡報.pptx' }
     ].forEach(({ href, name }) => {
       const a = document.createElement('a');
       a.href = href; a.download = name;
