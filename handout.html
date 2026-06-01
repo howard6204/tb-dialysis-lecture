@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>透析患者抗結核用藥：劑量調整與臨床案例照護 (講義) | 張綜瑋 藥師</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #3D5A78;
+      --accent:  #4E7A5A;
+      --bg:      #FDFBF9;
+      --light:   #F0ECE8;
+      --text:    #3A3530;
+      --border:  #E5E0DB;
+      --shadow:  0 4px 20px rgba(0,0,0,0.05);
+      --card-bg: #FFFFFF;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .topbar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── 返回首頁 ── */
+    .back-nav {
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9em;
+      transition: color 0.15s;
+    }
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    /* ── 講義標頭 ── */
+    .handout-header {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+    }
+    .handout-header h1 {
+      color: var(--primary);
+      font-size: 2.2em;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .handout-header h2 {
+      font-size: 1.15em;
+      color: #666;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+    
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      font-size: 0.88em;
+      color: #555;
+      background: var(--light);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .meta-item i {
+      color: var(--primary);
+      width: 16px;
+    }
+
+    /* ── 段落結構 ── */
+    h2.section-title {
+      font-size: 1.4em;
+      color: var(--primary);
+      margin: 40px 0 20px;
+      border-bottom: 2px solid rgba(61,90,120,0.15);
+      padding-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h2.section-title i {
+      color: var(--accent);
+    }
+
+    h3.sub-title {
+      font-size: 1.1em;
+      color: var(--accent);
+      margin: 24px 0 12px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* ── 表格 ── */
+    .table-container {
+      overflow-x: auto;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88em;
+      text-align: left;
+      background: #fff;
+    }
+    th {
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 14px;
+      font-weight: 700;
+    }
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #4A4540;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:nth-child(even) {
+      background: #FAF8F6;
+    }
+
+    /* ── 提示匡 ── */
+    .alert-box {
+      background: rgba(78,122,90,0.06);
+      border-left: 4px solid var(--accent);
+      padding: 18px 24px;
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+    }
+    .alert-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .case-box {
+      background: rgba(61,90,120,0.06);
+      border-left: 4px solid var(--primary);
+      padding: 18px 24px;
+      border-radius: 0 8px 8px 0;
+      margin: 24px 0;
+    }
+    .case-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── 互動測驗區 ── */
+    .quiz-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      transition: border-color 0.2s;
+    }
+    .quiz-card.correct {
+      border-color: var(--accent);
+    }
+    .quiz-card.incorrect {
+      border-color: #c0392b;
+    }
+    .quiz-num {
+      display: inline-block;
+      background: var(--light);
+      color: var(--primary);
+      font-size: 0.78em;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .quiz-question {
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--primary);
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .option-label:hover {
+      background: var(--light);
+    }
+    .option-label input {
+      accent-color: var(--primary);
+    }
+    .quiz-btn {
+      padding: 8px 18px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.88em;
+      font-family: inherit;
+    }
+    .quiz-feedback {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 0.88em;
+      display: none;
+    }
+    .quiz-feedback.success {
+      background: rgba(78,122,90,0.1);
+      color: var(--accent);
+      border-left: 3px solid var(--accent);
+    }
+    .quiz-feedback.danger {
+      background: rgba(192,57,43,0.1);
+      color: #c0392b;
+      border-left: 3px solid #c0392b;
+    }
+    .quiz-explanation {
+      margin-top: 8px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* ── 頁尾 ── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75em;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<div class="container">
+  
+  <!-- 返回連結 -->
+  <div class="back-nav">
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> 返回課程首頁 portal</a>
+  </div>
+
+  <!-- 標頭 -->
+  <div class="handout-header">
+    <h1>透析患者抗結核用藥：劑量調整與臨床案例照護</h1>
+    <h2>115年6月臨床藥學會雲嘉區雙月會 專題講義</h2>
+    <div class="meta-grid">
+      <div class="meta-item"><i class="fa-solid fa-user-doctor"></i> <span>講師：張綜瑋 藥師（員林基督教醫院 / 嘉南藥理大學）</span></div>
+      <div class="meta-item"><i class="fa-solid fa-chalkboard-user"></i> <span>座長：林昱呈 主任（嘉義長庚醫院）</span></div>
+      <div class="meta-item"><i class="fa-regular fa-calendar-days"></i> <span>時間：115 年 6 月 25 日 (四) 13:40 - 14:30</span></div>
+      <div class="meta-item"><i class="fa-solid fa-location-dot"></i> <span>地點：雲林基督教醫院行政大樓六樓</span></div>
+    </div>
+  </div>
+
+  <!-- 內容 -->
+  <h2 class="section-title"><i class="fa-solid fa-clipboard-list"></i> 學習目標</h2>
+  <ul>
+    <li><strong>說明</strong> 慢性腎臟病（CKD）與血液透析（HD）患者對結核桿菌的易感性及臨床藥物不良反應（ADR）差異。</li>
+    <li><strong>掌握</strong> 第一線抗結核藥物（HRZE）在腎功能不全及透析患者中的劑量與頻率調整原則。</li>
+    <li><strong>熟練計算</strong> 肥胖病患使用抗結核藥物時，依據親脂性/親水性之體重選擇原則（TBW vs. IBW）。</li>
+    <li><strong>識別並防範</strong> 抗結核藥物與抗排斥藥、HIV 藥物（如 Dolutegravir、Rifabutin/Cobicistat）及 COVID-19 抗病毒藥物之重大交互作用與臨床監測重點。</li>
+    <li><strong>發揮</strong> 臨床藥師在多專科照護團隊中，針對重症及特殊族群患者進行藥事監測之核心價值。</li>
+  </ul>
+
+  <h2 class="section-title"><i class="fa-solid fa-heart-pulse"></i> 一、 慢性腎臟病（CKD）與結核病之病理生理關係</h2>
+  <h3 class="sub-title">1. 腎臟病患對結核病的易感性</h3>
+  <p>慢性腎臟病與透析患者由於尿毒症影響，其免疫系統處於受損狀態，對結核病（TB）具有高度易感性：</p>
+  <ul>
+    <li><strong>巨噬細胞（Macrophage）</strong> 吞噬功能減退，無法有效清除結核桿菌。</li>
+    <li><strong>抗原呈現細胞（Antigen-presenting cells）</strong> 功能障礙，導致後天免疫反應延遲。</li>
+    <li><strong>B 細胞（B cells）</strong> 數量減少，抗體反應不足。</li>
+    <li><strong>T 細胞（T cells）</strong> 裂解與凋亡增加，肉芽腫（Granuloma）結構易崩解，導致潛伏結核感染（LTBI）極易進展為活動性肺結核（Active TB）。</li>
+  </ul>
+  <p><em>(文獻來源：Wien Klin Wochenschr (2022) 134:501–510)</em></p>
+
+  <h3 class="sub-title">2. 結核病對腎臟的直接損傷</h3>
+  <p>活動性結核可能引發<strong>泌尿生殖系統結核（Genitourinary Tuberculosis）</strong>，直接侵犯腎臟、輸尿管及膀胱，造成腎實質空洞化、纖維化與鈣化，進一步惡化 CKD 患者之腎功能。</p>
+
+  <h3 class="sub-title">3. 藥物不良反應（ADR）之顯著差異</h3>
+  <p>相較於腎功能正常者，CKD/透析患者在接受抗結核治療時，面臨更高的 ADR 風險：</p>
+  <ul>
+    <li><strong>藥物性肝炎（Drug-Induced Hepatitis）</strong> 發生機率大幅上升。</li>
+    <li><strong>神經學病變（Neurological neuropathy）</strong>（如末梢神經炎、視神經炎）比例顯著增加。</li>
+    <li><strong>皮膚不良反應（Skin rash）</strong> 更加普遍。</li>
+  </ul>
+  <p><em>(文獻來源：Ren Fail. 2024 Dec;46(2):2392883，印度 1815 人大型回溯性世代研究，證實腎功能不全者藥物毒性顯著高於常規患者)。</em></p>
+
+  <h2 class="section-title"><i class="fa-solid fa-capsules"></i> 二、 第一線抗結核藥物之腎功能調整原則</h2>
+  <p>當患者的估計腎絲球過濾率（eGFR）&lt; 30 mL/min 或正在接受血液透析（HD）時，部分抗結核藥物會在體內蓄積，必須<strong>調整給藥頻率</strong>以避免嚴重毒性，而非簡單減少每日劑量。</p>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>藥物簡稱</th>
+          <th>藥物名稱</th>
+          <th>藥物性質</th>
+          <th>常規每日劑量</th>
+          <th>腎功能不全調整劑量 <br>(eGFR < 30 mL/min 或血液透析 HD)</th>
+          <th>臨床監測與照護要點</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>H</strong></td>
+          <td>Isoniazid (INH)</td>
+          <td>親水性</td>
+          <td>5 mg/kg (通常 300 mg QD)</td>
+          <td><strong>無需調整</strong><br>維持每日 300 mg (或每週三次 900 mg)</td>
+          <td>建議補充電視素 <strong>Vitamin B6 (Pyridoxine) 50-100 mg/day</strong>，以預防末梢神經炎。</td>
+        </tr>
+        <tr>
+          <td><strong>R</strong></td>
+          <td>Rifampin (RIF)</td>
+          <td>親脂性</td>
+          <td>10 mg/kg (通常 600 mg QD)</td>
+          <td><strong>無需調整</strong><br>維持每日 450-600 mg</td>
+          <td>強效 CYP450 誘導劑，須密切監測藥物交互作用。排泄物呈橘紅色為正常。</td>
+        </tr>
+        <tr>
+          <td><strong>Z</strong></td>
+          <td>Pyrazinamide (PZA)</td>
+          <td>親水性</td>
+          <td>20-25 mg/kg</td>
+          <td><strong>降低頻率</strong>：<br><strong>25-30 mg/kg，每週三次</strong><br>(限於血液透析後給藥)</td>
+          <td>避免每日給藥以防活性代謝物（Pyrazinoic acid）蓄積。需監測高尿酸血症及關節痛。</td>
+        </tr>
+        <tr>
+          <td><strong>E</strong></td>
+          <td>Ethambutol (EMB)</td>
+          <td>親水性</td>
+          <td>15-20 mg/kg</td>
+          <td><strong>降低頻率</strong>：<br><strong>15-25 mg/kg，每週三次</strong><br>(限於血液透析後給藥)</td>
+          <td>每日給藥極易發生蓄積性<strong>視神經炎</strong>（表現為紅綠色盲、視力模糊）。透析後給藥可穩定清除。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert-box">
+    <div class="alert-title"><i class="fa-solid fa-circle-exclamation"></i> 透析患者之給藥時機重要原則</div>
+    <p>Pyrazinamide (PZA) 與 Ethambutol (EMB) 應安排於<strong>血液透析結束後立即給藥</strong>，以確保透析過程中不致將藥物過度清除，並使藥物在非透析日維持有效血藥濃度。</p>
+  </div>
+
+  <h2 class="section-title"><i class="fa-solid fa-weight-scale"></i> 三、 肥胖對藥物動力學之影響與劑量計算</h2>
+  <p>肥胖會改變藥物的分布體積（Vd）與半衰期（t1/2）。在處方抗結核藥物時，必須根據藥物的親水或親脂特性，選擇正確的體重基準進行劑量計算，以防治療失敗或藥物過量。</p>
+  
+  <h3 class="sub-title">1. 肥胖患者之藥物動力學變化</h3>
+  <ul>
+    <li><strong>親水性藥物</strong>：分布體積（Vd）在肥胖患者身上改變不大。若以真實體重（TBW）計算，血藥濃度會異常偏高，極易過量中毒。</li>
+    <li><strong>親脂性藥物</strong>：分布體積（Vd）會隨脂肪組織增加而顯著上升，藥物半衰期延長。若劑量不足，將導致 Cmax 偏低，增加治療失敗與產生抗藥性之風險。</li>
+  </ul>
+  <p><em>(文獻來源：Biomed Pharmacother. 2023 Oct;166:115281)</em></p>
+
+  <h3 class="sub-title">2. 體重選擇與計算指引表</h3>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>藥物名稱</th>
+          <th>藥物性質</th>
+          <th>推薦劑量計算體重</th>
+          <th>劑量上限 / 說明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Rifampin</strong></td>
+          <td>親脂性</td>
+          <td><strong>實際體重 (TBW)</strong></td>
+          <td>每日上限 <strong>600 mg</strong>。</td>
+        </tr>
+        <tr>
+          <td><strong>Isoniazid</strong></td>
+          <td>親水性</td>
+          <td><strong>理想體重 (IBW)</strong></td>
+          <td>每日上限 <strong>300 mg</strong>。</td>
+        </tr>
+        <tr>
+          <td><strong>Pyrazinamide</strong></td>
+          <td>親水性</td>
+          <td><strong>理想體重 (IBW)</strong></td>
+          <td>避免以實際體重計算導致高尿酸血症與嚴重肝毒性。</td>
+        </tr>
+        <tr>
+          <td><strong>Ethambutol</strong></td>
+          <td>親水性</td>
+          <td><strong>理想體重 (IBW)</strong></td>
+          <td>避免以實際體重計算引發視神經炎。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="case-box">
+    <div class="case-title"><i class="fa-solid fa-magnifying-glass-chart"></i> 臨床計算案例解析</div>
+    <p><strong>【病例背景】</strong>：38歲男性，身高 175 公分，實際體重 92 公斤，無其他病史，因活動性肺結核入院。預計給予 Rifater 複方與單方 Ethambutol (EMB)。</p>
+    <p><strong>【臨床藥師劑量評估】</strong>：</p>
+    <ol>
+      <li><strong>計算理想體重（IBW）：</strong><br>
+          $	ext{IBW (Male)} = 50 + 0.91 	imes (175 - 152.4) = 50 + 20.56 = \mathbf{70.6	ext{ kg}}$。<br>
+          實際體重 92 kg 已達理想體重之 130%，屬肥胖範疇。</li>
+      <li><strong>複方 Rifater 錠數：</strong> 體重 $\ge 50$ kg 者每日給予 <strong>5 錠</strong>，該患者符合。</li>
+      <li><strong>計算 Ethambutol (EMB) 劑量：</strong><br>
+          - <strong>錯誤做法（以實際體重 TBW 計算）</strong>：$92	ext{ kg} 	imes 15	ext{ mg/kg} = 1380	ext{ mg} ightarrow 	ext{開立 3.5 錠 (1400 mg)}$。這會顯著增加蓄積毒性與視神經炎風險。<br>
+          - <strong>正確做法（以理想體重 IBW 計算）</strong>：$70.6	ext{ kg} 	imes 15	ext{ mg/kg} = 1059	ext{ mg} ightarrow 	ext{開立 2.5 錠至 3 錠 (1000-1200 mg)}$。<br>
+          - <strong>藥師介入建議</strong>：建議開立 <strong>EMB 400 mg 2.5錠 至 3錠 QD</strong> 即可。</li>
+    </ol>
+  </div>
+
+  <h2 class="section-title"><i class="fa-solid fa-shuffle"></i> 四、 重大藥物交互作用與副作用監測</h2>
+  <h3 class="sub-title">1. Rifamycins（如 Rifampin）的強效酵素誘導作用</h3>
+  <p>Rifampin 是一種極強效的 CYP3A4 轉運蛋白及 P-gp 誘導劑，會大幅加速併用藥物的代謝，導致其療效喪失。</p>
+
+  <h3 class="sub-title">2. 抗愛滋病毒藥物（ARVs）交互作用</h3>
+  <ul>
+    <li><strong>Dolutegravir (DTG) 與 Rifampin 併用</strong>：Rifampin 會降低 DTG 的血中濃度（AUC 減少約 54%）。<br>
+        <strong>臨床對策</strong>：需將 Dolutegravir 的劑量由每日一次 50 mg <strong>增加為每日兩次（50 mg BID）</strong>。</li>
+    <li><strong>Rifabutin 與 Cobicistat 併用之毒性風險</strong>：Cobicistat 是一種強效 CYP3A4 抑制劑。當它與 Rifabutin（Rifampin 的替代藥）併用時，會使 Rifabutin 的血中濃度暴增。<br>
+        <strong>臨床案例</strong>：一名 43 歲女性 HIV 併肺結核患者，併用 Darunavir/Cobicistat 與 Rifabutin。給藥第 14 天發生嚴重雙眼葡萄膜炎（Anterior Uveitis）及玻璃體混濁（Vitritis/Retinitis）。藥物濃度監測發現 Rifabutin 血藥濃度高達 <strong>416 ng/mL</strong>（正常參考值僅 50-150 ng/mL）。*(Case Rep Ophthalmol 2020;11:156–160)*</li>
+  </ul>
+
+  <h3 class="sub-title">3. 器官移植抗排斥藥物交互作用</h3>
+  <p>Rifampin 會使 Cyclosporine、Tacrolimus、Rapamycin 等抗排斥藥物濃度暴跌，極易誘發器官排斥。<br>
+     <strong>臨床對策</strong>：必須每日或隔日密切監測抗排斥藥物之谷濃度（Trough level），並適時將抗排斥藥劑量上調 2 至 5 倍；或在可行情況下將 Rifampin 改為對 CYP3A4 影響較小的 <strong>Rifabutin</strong>。</p>
+
+  <h3 class="sub-title">4. 肝毒性監測與處置原則</h3>
+  <p>第一線抗結核藥物中，肝毒性強度順序為：<strong>Pyrazinamide (PZA) &gt; Isoniazid (INH) &gt; Rifampin (RIF)</strong>。<br>
+     PZA 使肝毒性風險提高 2.8 倍 *(Am J Respir Crit Care Med 2008;177:1391-6)*。</p>
+  <p><strong>【台灣結核病診治指引停藥標準】</strong>：</p>
+  <ol>
+    <li>肝功能指數（AST/ALT）上升達常規上限 <strong>5 倍以上（無症狀）</strong>。</li>
+    <li>肝功能指數（AST/ALT）上升達常規上限 <strong>3 倍以上（合併臨床症狀</strong>如黃疸、茶色尿、噁心嘔吐）。</li>
+  </ol>
+  <p><strong>重新加藥順序（WHO指引）</strong>：待肝功能恢復至常規 2 倍以下後，依序加回：<strong>Rifampin $ightarrow$ Isoniazid $ightarrow$ Pyrazinamide</strong>（PZA 毒性最強且非必須，若肝損傷嚴重常予以永久停用）。</p>
+
+  <h2 class="section-title"><i class="fa-solid fa-triangle-exclamation"></i> 五、 臨床處置與防錯案例分析</h2>
+  <h3 class="sub-title">1. 潛伏結核感染（LTBI）開立頻率錯誤</h3>
+  <ul>
+    <li><strong>錯誤案例一</strong>：醫師開立 Isoniazid/Rifapentine (300mg/300mg) 3 錠 <strong>QD（每日給藥）</strong>。<br>
+        <strong>藥師介入</strong>：該處方為週服 3HP 方案。每日給藥 3 錠會導致致死性藥物過量。藥師介入後修改為 <strong>3 錠 QW（每週一次，共 12 週）</strong>。</li>
+    <li><strong>錯誤案例二</strong>：醫師開立 Isoniazid/Rifapentine 300mg/300mg 1 錠 <strong>QD，共 7 天</strong>。<br>
+        <strong>藥師介入</strong>：若進行 1HP 每日給藥方案，每日劑量應為 INH 300mg + Rifapentine 600mg。原處方 Rifapentine 劑量減半不足。修正為：<strong>複方 1 錠 QD + 加開單方 Rifapentine 150mg 2 錠 QD</strong>。</li>
+  </ul>
+
+  <h2 class="section-title"><i class="fa-solid fa-circle-question"></i> 六、 互動式課程測驗</h2>
+  <p style="margin-bottom: 24px; color:#666;">（請點選選項進行作答，系統將即時回饋答案與臨床解析）</p>
+
+  <!-- Quiz 1 -->
+  <div class="quiz-card" id="quiz-1">
+    <div class="quiz-num">問題 1</div>
+    <div class="quiz-question">關於血液透析（HD）患者使用第一線抗結核藥物的劑量與頻率調整，下列敘述何者正確？</div>
+    <div class="quiz-options">
+      <label class="option-label"><input type="radio" name="q1" value="A"> (A) Isoniazid (INH) 必須調整為每週三次給藥。</label>
+      <label class="option-label"><input type="radio" name="q1" value="B"> (B) Rifampin (RIF) 因會經由透析大量清除，故透析當天需加倍劑量。</label>
+      <label class="option-label"><input type="radio" name="q1" value="C"> (C) Ethambutol (EMB) 與 Pyrazinamide (PZA) 應調整為每週三次，且於透析結束後給藥。</label>
+      <label class="option-label"><input type="radio" name="q1" value="D"> (D) 所有抗結核藥物皆不需調整，直接維持每日一次給藥即可。</label>
+    </div>
+    <button class="quiz-btn" onclick="checkAnswer(1, 'C')">送出答案</button>
+    <div class="quiz-feedback" id="feedback-1"></div>
+  </div>
+
+  <!-- Quiz 2 -->
+  <div class="quiz-card" id="quiz-2">
+    <div class="quiz-num">問題 2</div>
+    <div class="quiz-question">一位 42 歲肥胖男性患者（身高 170 cm，實際體重 95 kg），診斷為活動性肺結核。在計算 Ethambutol (EMB) 的起始治療劑量時，藥師應採取何種體重作為計算基準？</div>
+    <div class="quiz-options">
+      <label class="option-label"><input type="radio" name="q2" value="A"> (A) 實際體重 (Total Body Weight, TBW)，因其親脂性高。</label>
+      <label class="option-label"><input type="radio" name="q2" value="B"> (B) 理想體重 (Ideal Body Weight, IBW)，因其為親水性藥物，避免過量毒性。</label>
+      <label class="option-label"><input type="radio" name="q2" value="C"> (C) 調整後體重 (Adjusted Body Weight)。</label>
+      <label class="option-label"><input type="radio" name="q2" value="D"> (D) 直接給予固定劑量，與體重無關。</label>
+    </div>
+    <button class="quiz-btn" onclick="checkAnswer(2, 'B')">送出答案</button>
+    <div class="quiz-feedback" id="feedback-2"></div>
+  </div>
+
+  <!-- Quiz 3 -->
+  <div class="quiz-card" id="quiz-3">
+    <div class="quiz-num">問題 3</div>
+    <div class="quiz-question">【是非題】第一線抗結核藥物中，引發藥物性肝毒性（Hepatotoxicity）風險最高的藥物是 Rifampin，其次是 Isoniazid，最後是 Pyrazinamide。</div>
+    <div class="quiz-options">
+      <label class="option-label"><input type="radio" name="q3" value="A"> (A) 正確</label>
+      <label class="option-label"><input type="radio" name="q3" value="B"> (B) 錯誤</label>
+    </div>
+    <button class="quiz-btn" onclick="checkAnswer(3, 'B')">送出答案</button>
+    <div class="quiz-feedback" id="feedback-3"></div>
+  </div>
+
+  <!-- Quiz 4 -->
+  <div class="quiz-card" id="quiz-4">
+    <div class="quiz-num">問題 4</div>
+    <div class="quiz-question">當活動性肺結核患者併用 Rifampin 與抗愛滋病毒藥物 Dolutegravir (DTG) 時，臨床上應如何調整 DTG 的劑量？</div>
+    <div class="quiz-options">
+      <label class="option-label"><input type="radio" name="q4" value="A"> (A) 無需調整。</label>
+      <label class="option-label"><input type="radio" name="q4" value="B"> (B) 應將 Dolutegravir 的劑量增加至每日兩次（50 mg BID）。</label>
+      <label class="option-label"><input type="radio" name="q4" value="C"> (C) 應將 Dolutegravir 減量為兩天給藥一次。</label>
+      <label class="option-label"><input type="radio" name="q4" value="D"> (D) 應直接停用 Dolutegravir，改用單純雙合劑。</label>
+    </div>
+    <button class="quiz-btn" onclick="checkAnswer(4, 'B')">送出答案</button>
+    <div class="quiz-feedback" id="feedback-4"></div>
+  </div>
+
+  <!-- Quiz 5 -->
+  <div class="quiz-card" id="quiz-5">
+    <div class="quiz-num">問題 5</div>
+    <div class="quiz-question">【是非題】根據台灣結核病診治指引停藥標準，若患者無明顯臨床症狀，但其 AST/ALT 指數已上升至正常值上限的 5 倍以上，此時應立即暫停具肝毒性之抗結核藥物（如 H、R、Z）。</div>
+    <div class="quiz-options">
+      <label class="option-label"><input type="radio" name="q5" value="A"> (A) 正確</label>
+      <label class="option-label"><input type="radio" name="q5" value="B"> (B) 錯誤</label>
+    </div>
+    <button class="quiz-btn" onclick="checkAnswer(5, 'A')">送出答案</button>
+    <div class="quiz-feedback" id="feedback-5"></div>
+  </div>
+
+  <h2 class="section-title"><i class="fa-solid fa-book"></i> 七、 參考文獻</h2>
+  <ol>
+    <li><strong>JAMAevidence Users' Guides to the Medical Literature</strong>, Ch.17: How to Use a Patient Management Recommendation.</li>
+    <li>Neumann I, et al. Wien Klin Wochenschr. <strong>CKD and Tuberculosis susceptibility and outcomes</strong>. 2022;134:501–510.</li>
+    <li><strong>Renal Failure Cohort Study on Adverse Drug Reactions in TB</strong>. <em>Ren Fail</em>. 2024;46(2):2392883.</li>
+    <li>Multivariable analysis of pyrazinamide hepatotoxicity. <em>Am J Respir Crit Care Med</em>. 2008;177(12):1391-1396.</li>
+    <li>Hydrophilic vs Lipophilic drug dosing in Obese populations. <em>Biomed Pharmacother</em>. 2023;166:115281.</li>
+    <li>Severe uveitis induced by Rifabutin and Cobicistat drug interaction. <em>Case Rep Ophthalmol</em>. 2020;11:156–160.</li>
+    <li><strong>衛生福利部疾病管制署</strong>。《結核病診治指引第七版》。</li>
+  </ol>
+
+</div>
+
+<footer>
+  透析患者抗結核用藥：劑量調整與臨床案例照護 &nbsp;|&nbsp; 員林基督教醫院 藥劑課 &nbsp;|&nbsp; 張綜瑋 藥師
+</footer>
+
+<script>
+  const rationale = {
+    1: 'INH 與 RIF 在透析患者中無需調整劑量；而 EMB 與 PZA 易在體內蓄積產生視神經炎及高尿酸血症/肝毒性，故必須調整為每週三次，並於血液透析完成後給藥以防被透析清除。',
+    2: 'Ethambutol 屬於親水性藥物，在肥胖患者體內分布容積改變小。若以 TBW 計算極易過量蓄積導致視神經毒性。因此必須以理想體重（IBW）計算其每日 15 mg/kg 劑量。',
+    3: '第一線藥物中肝毒性最強的為 Pyrazinamide (PZA)，其次為 Isoniazid (INH)，而 Rifampin (RIF) 的肝毒性相對最低。故敘述顛倒，答案為錯誤。',
+    4: 'Rifampin 會強效誘導 CYP3A4 酵素，大幅降低 Dolutegravir 的血中濃度。為了維持抗病毒效果，臨床上需將 DTG 的劑量倍增，即調整為 50 mg 每日兩次（BID）。',
+    5: '肝毒性停藥指引規定：無症狀患者 AST/ALT 達 5 倍正常上限，或有症狀患者 AST/ALT 達 3 倍正常上限，均需立即停藥，待肝功能恢復後再依序加回。'
+  };
+
+  function checkAnswer(quizNum, correctVal) {
+    const card = document.getElementById(`quiz-${quizNum}`);
+    const feedback = document.getElementById(`feedback-${quizNum}`);
+    const selected = document.querySelector(`input[name="q${quizNum}"]:checked`);
+
+    if (!selected) {
+      feedback.className = 'quiz-feedback danger';
+      feedback.style.display = 'block';
+      feedback.innerHTML = '<strong>請先選擇一個選項！</strong>';
+      return;
+    }
+
+    const userAns = selected.value;
+    if (userAns === correctVal) {
+      card.className = 'quiz-card correct';
+      feedback.className = 'quiz-feedback success';
+      feedback.style.display = 'block';
+      feedback.innerHTML = `<strong>✓ 回答正確！</strong><br><div class="quiz-explanation">${rationale[quizNum]}</div>`;
+    } else {
+      card.className = 'quiz-card incorrect';
+      feedback.className = 'quiz-feedback danger';
+      feedback.style.display = 'block';
+      feedback.innerHTML = `<strong>❌ 回答錯誤！正確答案是 (${correctVal})</strong><br><div class="quiz-explanation">${rationale[quizNum]}</div>`;
+    }
+  }
+</script>
+</body>
+</html>

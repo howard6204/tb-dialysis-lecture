@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>透析患者抗結核用藥：劑量調整與臨床案例照護 | 張綜瑋 藥師</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #3D5A78;
+      --accent:  #4E7A5A;
+      --bg:      #FDFBF9;
+      --light:   #F0ECE8;
+      --text:    #3A3530;
+      --shadow:  0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── 頂部色帶 ── */
+    .topbar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #C8D5DF 0%, #D5E0D5 60%, #DDD5CC 100%);
+      padding: 56px 32px 48px;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(61,90,120,0.15);
+      color: var(--primary);
+      font-size: 0.78em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .hero h1 {
+      color: var(--primary);
+      font-size: 2.2em;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .hero h2 {
+      color: #5A6A58;
+      font-size: 1.05em;
+      font-weight: 400;
+      margin-bottom: 28px;
+    }
+
+    /* ── 演講者卡片 ── */
+    .presenter {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(61,90,120,0.2);
+      border-radius: 14px;
+      padding: 14px 22px;
+    }
+    .presenter img {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(61,90,120,0.3);
+    }
+    .presenter-info { text-align: left; }
+    .presenter-info .name { font-weight: 700; color: var(--primary); font-size: 1em; }
+    .presenter-info .org  { font-size: 0.78em; color: #5A5550; margin-top: 2px; line-height: 1.5; }
+
+    /* ── 主體 ── */
+    .main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* ── CTA 按鈕區 ── */
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 8px;
+      font-size: 0.95em;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-outline  {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    /* ── 課程大綱卡片 (雙月會時程表) ── */
+    .section-title {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: var(--primary);
+      border-left: 4px solid var(--accent);
+      padding-left: 10px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+    
+    .card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .program-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88em;
+      margin-top: 10px;
+    }
+    .program-table th {
+      border-bottom: 2px solid rgba(61,90,120,0.15);
+      padding: 10px 8px;
+      text-align: left;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .program-table td {
+      padding: 12px 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      vertical-align: middle;
+    }
+    .program-table tr:last-child td {
+      border-bottom: none;
+    }
+    .program-table tr.highlight {
+      background: rgba(78,122,90,0.08);
+      font-weight: 500;
+    }
+    .program-table tr.highlight td:nth-child(2) {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .text-muted {
+      color: #666;
+      font-size: 0.85em;
+    }
+
+    /* ── 講義領取表單 ── */
+    .form-box {
+      background: #fff;
+      border: 2px solid #D5DDE5;
+      border-radius: 12px;
+      padding: 28px 28px 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+    }
+    .form-box h3 {
+      color: var(--primary);
+      font-size: 1.1em;
+      margin-bottom: 6px;
+      text-align: left;
+    }
+    .form-box p {
+      font-size: 0.85em;
+      color: #666;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .form-row input[type="email"] {
+      flex: 1;
+      padding: 11px 14px;
+      border: 1.5px solid #C8D0D8;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 0.9em;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .form-row input[type="email"]:focus { border-color: var(--primary); }
+    .form-row button {
+      padding: 11px 20px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 0.9em;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity .15s;
+    }
+    .form-row button:hover { opacity: 0.85; }
+    .form-row button:disabled { opacity: 0.5; cursor: default; }
+    .form-msg {
+      margin-top: 10px;
+      font-size: 0.85em;
+      min-height: 20px;
+      text-align: left;
+    }
+    .form-msg.ok   { color: var(--accent); }
+    .form-msg.err  { color: #c0392b; }
+
+    /* ── 慢慢來藥師 社群 ── */
+    .social-block { text-align: center; margin-top: 16px; }
+    .social-block .social-label {
+      font-size: 0.95em;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+    .social-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      text-decoration: none;
+      border: 1.5px solid rgba(61,90,120,0.25);
+      transition: transform 0.15s, background 0.15s, color 0.15s, box-shadow 0.15s;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .social-icon:hover {
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+    .social-icon.fb:hover    { background: #1877F2; color: #fff; border-color: #1877F2; }
+    .social-icon.ig:hover    { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; border-color: #bc1888; }
+    .social-icon.blog:hover  { background: #21759B; color: #fff; border-color: #21759B; }
+    .social-icon.podcast:hover { background: #872EC4; color: #fff; border-color: #872EC4; }
+
+    /* ── 頁尾 ── */
+    footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75em;
+      text-align: center;
+      padding: 16px;
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="badge">115年6月臨床藥學會雲嘉區雙月會</div>
+  <h1>透析患者抗結核用藥：劑量調整與臨床案例照護</h1>
+  <h2>守住防線：腎臟病患者臨床照護與用藥決策</h2>
+  <div class="presenter">
+    <img src="assets/avatar.jpg" alt="張綜瑋 藥師" onerror="this.style.display='none'">
+    <div class="presenter-info">
+      <div class="name">張綜瑋 藥師</div>
+      <div class="org">
+        彰化基督教醫療財團法人 員林基督教醫院 藥劑課<br>
+        嘉南藥理大學藥學系 兼任講師
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 主體 -->
+<div class="main">
+
+  <!-- 快速連結 -->
+  <div class="cta-row">
+    <a href="handout.html" class="btn btn-primary"><i class="fa-solid fa-book-open"></i> 閱讀線上講義與互動測驗</a>
+    <a href="1140703 特殊族群抗結核藥物劑量調整.pptx" class="btn btn-outline" download><i class="fa-regular fa-file-powerpoint"></i> 下載課程簡報 PPTX</a>
+  </div>
+
+
+
+  <!-- 講義領取 -->
+  <div class="form-box">
+    <h3>📄 領取課程講義 PDF</h3>
+    <p>輸入 Email 後可立即下載完整講義 PDF 及抗結核藥物調整簡表。</p>
+    <div class="form-row">
+      <input type="email" id="email-input" placeholder="your@email.com">
+      <button id="submit-btn" onclick="submitEmail()">下載講義</button>
+    </div>
+    <div class="form-msg" id="form-msg"></div>
+  </div>
+
+  <!-- 慢慢來藥師 社群 -->
+  <div class="social-block">
+    <div class="social-label">追蹤 慢慢來藥師</div>
+    <div class="social-row">
+      <a href="https://www.facebook.com/Parkinsonboy/" target="_blank" class="social-icon fb" title="慢慢來藥師 FB">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="https://www.instagram.com/slowpharmacist/" target="_blank" class="social-icon ig" title="@slowpharmacist IG">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://pharmacyu.wordpress.com/" target="_blank" class="social-icon blog" title="慢慢來藥師 Blog">
+        <i class="fa-brands fa-wordpress"></i>
+      </a>
+      <a href="https://podcasts.apple.com/tw/podcast/%E8%81%BD%E4%BD%A0%E6%85%A2%E6%85%A2%E8%AA%AA/id1635029673" target="_blank" class="social-icon podcast" title="聽你慢慢說 Podcast">
+        <i class="fa-solid fa-podcast"></i>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  透析患者抗結核用藥：劑量調整與臨床案例照護 &nbsp;|&nbsp; 員林基督教醫院 藥劑課 &nbsp;|&nbsp; 張綜瑋 藥師
+</footer>
+
+<script>
+  // GAS 記錄 Email Web App URL
+  const GAS_URL = 'YOUR_GAS_WEBAPP_URL';
+
+  function submitEmail() {
+    const input = document.getElementById('email-input');
+    const btn   = document.getElementById('submit-btn');
+    const msg   = document.getElementById('form-msg');
+    const email = input.value.trim();
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.className = 'form-msg err';
+      msg.textContent = '請輸入有效的 Email 地址。';
+      return;
+    }
+
+    // 觸發講義下載 (下載 Markdown/PDF 與 PPTX)
+    [
+      { href: '透析患者抗結核用藥_講義.md', name: '透析患者抗結核用藥_講義.md' },
+      { href: '1140703 特殊族群抗結核藥物劑量調整.pptx', name: '特殊族群抗結核藥物劑量調整.pptx' }
+    ].forEach(({ href, name }) => {
+      const a = document.createElement('a');
+      a.href = href; a.download = name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    });
+
+    msg.className = 'form-msg ok';
+    msg.textContent = '✓ 正在下載講義與投影片檔案，請稍候…';
+    btn.disabled = true;
+    input.value = '';
+
+    // 背景記錄 Email
+    if (GAS_URL !== 'YOUR_GAS_WEBAPP_URL') {
+      fetch(GAS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          course: '透析患者抗結核用藥',
+          time: new Date().toISOString(),
+        }),
+      }).catch(() => {});
+    }
+
+    setTimeout(() => { btn.disabled = false; }, 3000);
+  }
+
+  // Enter 鍵送出
+  document.getElementById('email-input')
+    .addEventListener('keydown', e => { if (e.key === 'Enter') submitEmail(); });
+</script>
+</body>
+</html>
