@@ -313,30 +313,31 @@
       return;
     }
 
-    // 觸發下載
+    // 先背景記錄 Email：用 sendBeacon（射後不理，不跟隨轉址、絕不影響頁面或下載）
+    if (GAS_URL && GAS_URL.indexOf('script.google.com') > -1) {
+      try {
+        const payload = JSON.stringify({
+          email,
+          course: '慢性腎臟病與透析患者之抗結核藥物',
+          time: new Date().toISOString(),
+        });
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(GAS_URL, new Blob([payload], { type: 'text/plain;charset=UTF-8' }));
+        }
+      } catch (e) { /* 記錄失敗不影響下載 */ }
+    }
+
+    // 觸發下載（同源檔案，直接下載不導頁）
     const a = document.createElement('a');
     a.href = 'handout.pdf';
     a.download = '慢性腎臟病與透析患者抗結核用藥_講義.pdf';
+    a.rel = 'noopener';
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
 
     msg.className = 'form-msg ok';
     msg.textContent = '✓ 正在下載課程講義 PDF，請稍候…';
     btn.disabled = true;
     input.value = '';
-
-    // 背景記錄 Email（no-cors + text/plain 避免 CORS preflight；失敗不影響下載）
-    if (GAS_URL && GAS_URL.indexOf('script.google.com') > -1) {
-      fetch(GAS_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({
-          email,
-          course: '慢性腎臟病與透析患者之抗結核藥物',
-          time: new Date().toISOString(),
-        }),
-      }).catch(() => {});
-    }
 
     setTimeout(() => { btn.disabled = false; }, 3000);
   }
