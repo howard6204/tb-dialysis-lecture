@@ -6,6 +6,7 @@
   <title>慢性腎臟病與透析患者之抗結核藥物劑量調整與臨床藥事照護 | 張綜瑋 藥師</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="assets/chalkboard/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -16,47 +17,44 @@
     .reveal .slides section { text-align:left; }
     .reveal h1,.reveal h2,.reveal h3 { text-transform:none; }
 
-    /* ── 封面（高特異性，蓋過 reveal 主題的 h1） ── */
+    /* ── 封面（複刻範本：白底+頂色帶+灰分隔線+白卡片） ── */
     .reveal .slides section.cover {
-      background:linear-gradient(135deg,#C8D5DF 0%,#D5E0D5 60%,#DDD5CC 100%);
-      display:flex; flex-direction:column; justify-content:center;
-      height:100%; padding:0 1.8em; text-align:left;
+      background:#FDFBF9;
+      display:flex !important; flex-direction:column; justify-content:center;
+      height:100%; padding:0 70px; text-align:left;
     }
     .reveal .slides section.cover::before {
       content:''; position:absolute; top:0; left:0; right:0; height:6px;
-      background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 100%);
-      pointer-events:none;
+      background:linear-gradient(90deg,#3D5A78 0%,#4E7A5A 100%); pointer-events:none;
     }
     .reveal .slides section.cover .cover-title {
-      font-size:1.28em; font-weight:700; color:var(--primary);
-      line-height:1.34; margin:0 0 .2em; letter-spacing:.01em;
+      color:#3D5A78; font-size:1.5em; font-weight:700; line-height:1.35;
+      margin:0 0 16px; letter-spacing:.01em; white-space:nowrap;
     }
     .reveal .slides section.cover .cover-divider {
-      height:2px; width:70%;
-      background:linear-gradient(90deg,var(--primary) 0%,transparent 100%);
-      margin:.3em 0 .55em;
+      height:1px; width:100%; background:#D8D2CC; margin:0 0 18px;
+    }
+    .reveal .slides section.cover .cover-sub {
+      color:#6B7280; font-size:1.05em; font-weight:400; margin:0 0 16px;
     }
     .reveal .slides section.cover .cover-meta {
-      font-size:.46em; color:#5A6A58; font-weight:500; margin:0 0 1.1em;
+      color:#8A8580; font-size:.6em; margin:0 0 30px;
     }
-    .reveal .slides section.cover .cover-meta span { margin:0 .55em; color:#9AA89A; }
+    .reveal .slides section.cover .cover-meta span { margin:0 .6em; color:#C8C2BC; }
     .reveal .slides section.cover .presenter-card {
-      display:inline-flex; align-items:center; gap:16px;
-      background:rgba(255,255,255,.65); border:1px solid rgba(61,90,120,.18);
-      border-radius:14px; padding:14px 22px; align-self:flex-start;
-      box-shadow:0 2px 12px rgba(61,90,120,.1);
+      display:flex; align-items:center; gap:20px; width:fit-content;
+      padding:16px 24px; background:#fff;
+      border:1px solid #E5E0DB; border-radius:14px;
+      box-shadow:0 2px 12px rgba(61,90,120,.06);
     }
     .reveal .slides section.cover .presenter-card img {
-      width:64px; height:64px; border-radius:50%; object-fit:cover;
-      border:2px solid rgba(61,90,120,.3);
+      width:72px; height:72px; border-radius:50%; object-fit:cover;
+      border:2px solid #E0DAD3; flex-shrink:0;
     }
-    .reveal .slides section.cover .presenter-name {
-      font-size:.5em; font-weight:700; color:var(--primary); margin:0;
+    .reveal .slides section.cover .presenter-info {
+      color:#5A5550; font-size:.62em; line-height:1.7;
     }
-    .reveal .slides section.cover .presenter-org {
-      font-size:.38em; color:#5A5550; line-height:1.6; margin-top:3px;
-    }
-    .reveal .slides section.cover .presenter-org strong { color:var(--accent); }
+    .reveal .slides section.cover .presenter-info strong { color:#3D5A78; font-size:1.05em; }
 
     /* 整頁嵌圖 */
     .reveal .slides section.imgslide { padding:0; }
@@ -64,6 +62,30 @@
     .reveal .progress { height:3px; color:var(--accent); }
     .reveal .controls { color:var(--primary); }
     .reveal .slide-number { color:var(--muted); font-size:.4em; }
+
+    /* ── 功能按鈕列（首頁/翻頁/畫筆/黑板） ── */
+    #toolbar {
+      position:fixed; bottom:6px; right:14px; z-index:9999;
+      display:flex; gap:4px; background:rgba(30,42,56,.55);
+      padding:5px 10px; border-radius:30px; backdrop-filter:blur(4px);
+      box-shadow:0 2px 10px rgba(0,0,0,.2); opacity:.35;
+      transition:opacity .25s, background .25s;
+    }
+    #toolbar:hover { opacity:1; background:rgba(30,42,56,.92); }
+    .tb-btn {
+      background:transparent; color:#fff; border:none; border-radius:6px;
+      width:30px; height:30px; font-size:14px; cursor:pointer;
+      display:flex; align-items:center; justify-content:center;
+      transition:background .15s; position:relative;
+    }
+    .tb-btn:hover { background:rgba(255,255,255,.15); }
+    .tb-btn.active { background:rgba(255,255,255,.25); }
+    .tb-btn .label {
+      position:absolute; bottom:-22px; left:50%; transform:translateX(-50%);
+      font-size:10px; white-space:nowrap; color:rgba(255,255,255,.7);
+      font-family:'Noto Sans TC',sans-serif; pointer-events:none;
+    }
+    .tb-sep { width:1px; background:rgba(255,255,255,.2); margin:4px 2px; }
   </style>
 </head>
 <body>
@@ -72,17 +94,16 @@
 
 <!-- 封面 -->
 <section class="cover">
-  <h1 class="cover-title">慢性腎臟病與透析患者之抗結核藥物<br>劑量調整與臨床藥事照護</h1>
+  <h1 class="cover-title">慢性腎臟病與透析患者之抗結核藥物</h1>
   <div class="cover-divider"></div>
-  <p class="cover-meta">115年6月臨床藥學會雲嘉區雙月會 <span>|</span> 115年06月</p>
+  <div class="cover-sub">劑量調整與臨床藥事照護</div>
+  <div class="cover-meta">115年6月 臨床藥學會雲嘉區雙月會 <span>｜</span> 115年06月</div>
   <div class="presenter-card">
     <img src="assets/avatar.jpg" alt="張綜瑋 藥師" onerror="this.style.display='none'">
-    <div>
-      <div class="presenter-name">張綜瑋 藥師</div>
-      <div class="presenter-org">
-        彰化基督教醫療財團法人 員林基督教醫院<br>
-        嘉南藥理大學 藥學系 <strong>兼任講師</strong>
-      </div>
+    <div class="presenter-info">
+      <strong>張綜瑋 藥師</strong><br>
+      彰化基督教醫療財團法人 員林基督教醫院 藥劑課<br>
+      嘉南藥理大學 藥學系 <strong>兼任講師</strong>
     </div>
   </div>
 </section>
@@ -167,7 +188,24 @@
 <section class="imgslide" data-background-image="assets/deck/slide78.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
   </div>
 </div>
+
+<!-- 功能按鈕列 -->
+<div id="toolbar">
+  <button class="tb-btn" title="回首頁" onclick="location.href='index.html'">🏠<span class="label">首頁</span></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" title="上一頁 (←)" onclick="Reveal.prev()">◀<span class="label">上一頁</span></button>
+  <button class="tb-btn" title="下一頁 (→)" onclick="Reveal.next()">▶<span class="label">下一頁</span></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="btn-pen" title="畫筆 (C)" onclick="togglePen()">✏️<span class="label">畫筆</span></button>
+  <button class="tb-btn" id="btn-board" title="黑板 (B)" onclick="toggleBoard()">🖊<span class="label">黑板</span></button>
+  <button class="tb-btn" title="清除 (Del)" onclick="RevealChalkboard.clear()">🗑<span class="label">清除</span></button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" id="btn-fs" title="全螢幕 (F)" onclick="toggleFS()">⛶<span class="label">全螢幕</span></button>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="assets/chalkboard/plugin.js"></script>
 <script>
 Reveal.initialize({
   hash: true,
@@ -181,7 +219,62 @@ Reveal.initialize({
   width: 1280,
   height: 720,
   margin: 0,
-  plugins: []
+  plugins: [RevealNotes, RevealChalkboard],
+  chalkboard: {
+    boardmarkerWidth: 4,
+    chalkWidth: 5,
+    chalkEffect: 0.05,
+    grid: false,
+    toggleNotesButton: false,
+    toggleChalkboardButton: false,
+    eraser: {
+      src: 'data:image/svg+xml;utf8,' + encodeURIComponent(
+        "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>" +
+        "<g transform='rotate(45 12 12)'>" +
+        "<rect x='4' y='9' width='16' height='8' rx='1.5' fill='#f48fb1' stroke='#880e4f' stroke-width='1.2'/>" +
+        "<rect x='4' y='13' width='16' height='4' fill='#ec407a' stroke='#880e4f' stroke-width='1.2'/>" +
+        "</g></svg>"),
+      radius: 20,
+    },
+    boardmarkers: [
+      { color: 'rgba(220,20,60,1)',   cursor: 'crosshair' },
+      { color: 'rgba(30,144,255,1)',  cursor: 'crosshair' },
+      { color: 'rgba(50,205,50,1)',   cursor: 'crosshair' },
+      { color: 'rgba(255,140,0,1)',   cursor: 'crosshair' },
+      { color: 'rgba(150,0,200,1)',   cursor: 'crosshair' },
+      { color: 'rgba(255,221,51,1)',  cursor: 'crosshair' },
+      { color: 'rgba(40,40,40,1)',    cursor: 'crosshair' },
+    ],
+    chalks: [
+      { color: 'rgba(255,221,51,1)',  cursor: 'crosshair' },
+      { color: 'rgba(255,255,255,1)', cursor: 'crosshair' },
+      { color: 'rgba(80,200,255,1)',  cursor: 'crosshair' },
+      { color: 'rgba(255,99,99,1)',   cursor: 'crosshair' },
+      { color: 'rgba(120,240,120,1)', cursor: 'crosshair' },
+      { color: 'rgba(255,170,60,1)',  cursor: 'crosshair' },
+      { color: 'rgba(255,130,220,1)', cursor: 'crosshair' },
+    ],
+    background: [
+      'rgba(127,127,127,.1)',
+      'data:image/svg+xml;utf8,' + encodeURIComponent(
+        "<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><rect width='10' height='10' fill='#1f2730'/></svg>"),
+    ],
+  },
+});
+
+// 畫筆（投影片上塗鴉）/ 黑板（深色板）
+function togglePen()   { RevealChalkboard.toggleNotesCanvas(); }
+function toggleBoard() { RevealChalkboard.toggleChalkboard(); }
+
+// 全螢幕
+function toggleFS() {
+  if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); }
+  else { document.exitFullscreen(); }
+}
+document.addEventListener('fullscreenchange', () => {
+  const btn = document.getElementById('btn-fs');
+  btn.textContent = document.fullscreenElement ? '✕' : '⛶';
+  btn.querySelector('.label').textContent = document.fullscreenElement ? '離開' : '全螢幕';
 });
 </script>
 </body>
