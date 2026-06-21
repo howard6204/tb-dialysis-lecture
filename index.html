@@ -298,8 +298,8 @@
 </footer>
 
 <script>
-  // ── GAS 記錄 Email 的 Web App URL（部署後替換）──
-  const GAS_URL = 'YOUR_GAS_WEBAPP_URL';
+  // ── GAS 記錄 Email 的 Web App URL ──
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbyiSAV9asgWMZQlD854uFdPQGdfqjGZXNyMdfP7n92qM2vuwF9rfW6iOctXocnFC1-A/exec';
 
   function submitEmail() {
     const input = document.getElementById('email-input');
@@ -324,11 +324,12 @@
     btn.disabled = true;
     input.value = '';
 
-    // 背景記錄 Email（失敗不影響下載）
-    if (GAS_URL !== 'YOUR_GAS_WEBAPP_URL') {
+    // 背景記錄 Email（no-cors + text/plain 避免 CORS preflight；失敗不影響下載）
+    if (GAS_URL && GAS_URL.indexOf('script.google.com') > -1) {
       fetch(GAS_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           email,
           course: '慢性腎臟病與透析患者之抗結核藥物',
