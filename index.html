@@ -301,6 +301,11 @@
   // 講義檔名 = 完整課程標題
   const PDF_NAME = '慢性腎臟病與透析患者之抗結核藥物劑量調整與臨床藥事照護.pdf';
 
+  // ── 中央講義領取記錄器（所有演講共用同一張總表）──
+  const LOGGER_URL = 'https://script.google.com/macros/s/AKfycbya_rtVDADiQG8LcgU35Ti8l-dEzorHHrUmPkqkOHGf6qbf09eLT5CxRtWcimKZmBda/exec';
+  const HANDOUT = '慢性腎臟病與透析患者之抗結核藥物';        // 這份講義名稱
+  const SOURCE  = '115年6月 臨床藥學會雲嘉區雙月會';          // 來源場次
+
   function submitEmail() {
     const input = document.getElementById('email-input');
     const btn   = document.getElementById('submit-btn');
@@ -313,7 +318,15 @@
       return;
     }
 
-    // 純同源下載：直接點 a[download]，不連任何外部網址（避免轉址迴圈）
+    // 記錄領取（sendBeacon 射後不理；中央端點為匿名可存取，不會轉址迴圈，也不影響下載）
+    try {
+      if (navigator.sendBeacon) {
+        const payload = JSON.stringify({ email, handout: HANDOUT, source: SOURCE, time: new Date().toISOString() });
+        navigator.sendBeacon(LOGGER_URL, new Blob([payload], { type: 'text/plain;charset=UTF-8' }));
+      }
+    } catch (e) { /* 記錄失敗不影響下載 */ }
+
+    // 純同源下載：直接點 a[download]，不導頁
     const a = document.createElement('a');
     a.href = 'handout.pdf';
     a.download = PDF_NAME;
