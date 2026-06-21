@@ -1,0 +1,9 @@
+*.pptx
+*.md
+*.py
+.git
+.github
+.wrangler
+.cache
+assets/slides
+README*

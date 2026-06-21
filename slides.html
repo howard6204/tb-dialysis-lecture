@@ -16,24 +16,47 @@
     .reveal .slides section { text-align:left; }
     .reveal h1,.reveal h2,.reveal h3 { text-transform:none; }
 
-    /* 封面頂部色帶 */
+    /* ── 封面（高特異性，蓋過 reveal 主題的 h1） ── */
+    .reveal .slides section.cover {
+      background:linear-gradient(135deg,#C8D5DF 0%,#D5E0D5 60%,#DDD5CC 100%);
+      display:flex; flex-direction:column; justify-content:center;
+      height:100%; padding:0 1.8em; text-align:left;
+    }
     .reveal .slides section.cover::before {
-      content:''; display:block; position:absolute; top:0; left:0; right:0;
-      height:5px; background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 100%);
+      content:''; position:absolute; top:0; left:0; right:0; height:6px;
+      background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 100%);
       pointer-events:none;
     }
-    .cover-wrap { padding:1.6em 2.2em; position:relative; }
-    .cover-title { font-size:1.15em; font-weight:700; color:var(--primary); line-height:1.4; margin:0 0 .15em; }
-    .cover-divider { height:1.5px; background:linear-gradient(90deg,var(--primary) 0%,transparent 100%); margin:.35em 0 .55em; width:80%; }
-    .cover-meta { font-size:.5em; color:var(--muted); margin-bottom:1.1em; }
-    .cover-meta span { margin:0 .5em; }
-    .presenter-card { display:inline-flex; align-items:center; gap:16px; background:#fff; border:1px solid #D8E0E8; border-radius:12px; padding:14px 20px; box-shadow:0 2px 10px rgba(61,90,120,.08); }
-    .presenter-card img { width:62px; height:62px; border-radius:50%; object-fit:cover; border:2px solid #C8D5DF; }
-    .presenter-name { font-size:.62em; font-weight:700; color:var(--primary); }
-    .presenter-org { font-size:.46em; color:var(--muted); line-height:1.6; margin-top:2px; }
-    .presenter-org strong { color:var(--accent); }
-    .cover-foot { position:absolute; bottom:0; left:0; right:0; height:26px; background:#F0ECE8; border-top:1px solid #DDD5CC; display:flex; align-items:center; padding:0 1.2em; font-size:.34em; color:var(--muted); }
-    .cover-foot span { margin:0 .5em; }
+    .reveal .slides section.cover .cover-title {
+      font-size:1.28em; font-weight:700; color:var(--primary);
+      line-height:1.34; margin:0 0 .2em; letter-spacing:.01em;
+    }
+    .reveal .slides section.cover .cover-divider {
+      height:2px; width:70%;
+      background:linear-gradient(90deg,var(--primary) 0%,transparent 100%);
+      margin:.3em 0 .55em;
+    }
+    .reveal .slides section.cover .cover-meta {
+      font-size:.46em; color:#5A6A58; font-weight:500; margin:0 0 1.1em;
+    }
+    .reveal .slides section.cover .cover-meta span { margin:0 .55em; color:#9AA89A; }
+    .reveal .slides section.cover .presenter-card {
+      display:inline-flex; align-items:center; gap:16px;
+      background:rgba(255,255,255,.65); border:1px solid rgba(61,90,120,.18);
+      border-radius:14px; padding:14px 22px; align-self:flex-start;
+      box-shadow:0 2px 12px rgba(61,90,120,.1);
+    }
+    .reveal .slides section.cover .presenter-card img {
+      width:64px; height:64px; border-radius:50%; object-fit:cover;
+      border:2px solid rgba(61,90,120,.3);
+    }
+    .reveal .slides section.cover .presenter-name {
+      font-size:.5em; font-weight:700; color:var(--primary); margin:0;
+    }
+    .reveal .slides section.cover .presenter-org {
+      font-size:.38em; color:#5A5550; line-height:1.6; margin-top:3px;
+    }
+    .reveal .slides section.cover .presenter-org strong { color:var(--accent); }
 
     /* 整頁嵌圖 */
     .reveal .slides section.imgslide { padding:0; }
@@ -48,25 +71,19 @@
   <div class="slides">
 
 <!-- 封面 -->
-<section class="cover" data-background-color="#FDFBF9">
-  <div class="cover-wrap">
-    <h1 class="cover-title">慢性腎臟病與透析患者之抗結核藥物<br>劑量調整與臨床藥事照護</h1>
-    <div class="cover-divider"></div>
-    <p class="cover-meta">115年6月臨床藥學會雲嘉區雙月會 <span>|</span> 115年06月</p>
-    <div class="presenter-card">
-      <img src="assets/avatar.jpg" alt="張綜瑋 藥師" onerror="this.style.display='none'">
-      <div>
-        <div class="presenter-name">張綜瑋 藥師</div>
-        <div class="presenter-org">
-          彰化基督教醫療財團法人 員林基督教醫院<br>
-          嘉南藥理大學 藥學系 <strong>兼任講師</strong>
-        </div>
+<section class="cover">
+  <h1 class="cover-title">慢性腎臟病與透析患者之抗結核藥物<br>劑量調整與臨床藥事照護</h1>
+  <div class="cover-divider"></div>
+  <p class="cover-meta">115年6月臨床藥學會雲嘉區雙月會 <span>|</span> 115年06月</p>
+  <div class="presenter-card">
+    <img src="assets/avatar.jpg" alt="張綜瑋 藥師" onerror="this.style.display='none'">
+    <div>
+      <div class="presenter-name">張綜瑋 藥師</div>
+      <div class="presenter-org">
+        彰化基督教醫療財團法人 員林基督教醫院<br>
+        嘉南藥理大學 藥學系 <strong>兼任講師</strong>
       </div>
     </div>
-  </div>
-  <div class="cover-foot">
-    慢性腎臟病與透析患者之抗結核藥物劑量調整與臨床藥事照護
-    <span>|</span> 115年6月臨床藥學會雲嘉區雙月會 <span>|</span> 張綜瑋 藥師
   </div>
 </section>
 
