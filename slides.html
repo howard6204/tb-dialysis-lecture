@@ -5,874 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>慢性腎臟病與透析患者之抗結核藥物劑量調整與臨床藥事照護 | 張綜瑋 藥師</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/blood.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --r-main-font: 'Noto Sans TC', sans-serif;
-      --r-heading-font: 'Noto Sans TC', sans-serif;
-      --r-background-color: #0d1b2a;
-      --r-main-color: #e8f0f7;
-      --r-heading-color: #90caf9;
-      --r-link-color: #64b5f6;
+      --primary:#3D5A78; --accent:#4E7A5A; --muted:#6B7280;
+      --r-background-color:#FDFBF9;
     }
-    .reveal { font-family: 'Noto Sans TC', sans-serif; }
-    .reveal h2 { font-size: 1.15em; color: #90caf9; border-bottom: 2px solid #1e3a5c; padding-bottom: 0.2em; margin-bottom: 0.4em; text-transform: none; }
-    .reveal h1 { text-transform: none; }
+    .reveal { font-family:'Noto Sans TC',sans-serif; }
+    .reveal .slides section { text-align:left; }
+    .reveal h1,.reveal h2,.reveal h3 { text-transform:none; }
 
-    /* Cover */
-    .cover-inner { text-align: center; padding: 1em; }
-    .cover-badge { display: inline-block; background: rgba(144,202,249,0.15); border: 1px solid rgba(144,202,249,0.4); color: #90caf9; border-radius: 20px; padding: 4px 16px; font-size: 0.55em; letter-spacing: 0.08em; margin-bottom: 0.8em; }
-    .cover-title { font-size: 1.25em; line-height: 1.4; color: #fff; font-weight: 700; margin: 0.3em 0; text-shadow: 0 2px 8px rgba(0,0,0,0.6); }
-    .cover-subtitle { font-size: 0.52em; color: #90caf9; margin: 0.5em 0 1em; font-style: italic; }
-    .cover-presenter { display: inline-flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(144,202,249,0.3); border-radius: 12px; padding: 10px 18px; }
-    .cover-presenter img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(144,202,249,0.4); }
-    .cover-name { font-weight: 700; font-size: 0.75em; color: #fff; }
-    .cover-org { font-size: 0.52em; color: #90caf9; margin-top: 2px; }
+    /* 封面頂部色帶 */
+    .reveal .slides section.cover::before {
+      content:''; display:block; position:absolute; top:0; left:0; right:0;
+      height:5px; background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 100%);
+      pointer-events:none;
+    }
+    .cover-wrap { padding:1.6em 2.2em; position:relative; }
+    .cover-title { font-size:1.15em; font-weight:700; color:var(--primary); line-height:1.4; margin:0 0 .15em; }
+    .cover-divider { height:1.5px; background:linear-gradient(90deg,var(--primary) 0%,transparent 100%); margin:.35em 0 .55em; width:80%; }
+    .cover-meta { font-size:.5em; color:var(--muted); margin-bottom:1.1em; }
+    .cover-meta span { margin:0 .5em; }
+    .presenter-card { display:inline-flex; align-items:center; gap:16px; background:#fff; border:1px solid #D8E0E8; border-radius:12px; padding:14px 20px; box-shadow:0 2px 10px rgba(61,90,120,.08); }
+    .presenter-card img { width:62px; height:62px; border-radius:50%; object-fit:cover; border:2px solid #C8D5DF; }
+    .presenter-name { font-size:.62em; font-weight:700; color:var(--primary); }
+    .presenter-org { font-size:.46em; color:var(--muted); line-height:1.6; margin-top:2px; }
+    .presenter-org strong { color:var(--accent); }
+    .cover-foot { position:absolute; bottom:0; left:0; right:0; height:26px; background:#F0ECE8; border-top:1px solid #DDD5CC; display:flex; align-items:center; padding:0 1.2em; font-size:.34em; color:var(--muted); }
+    .cover-foot span { margin:0 .5em; }
 
-    /* Outline */
-    .outline-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6em; font-size: 0.65em; }
-    .outline-item { background: rgba(144,202,249,0.1); border: 1px solid rgba(144,202,249,0.3); border-radius: 8px; padding: 0.5em 0.7em; text-align: center; }
+    /* 整頁嵌圖 */
+    .reveal .slides section.imgslide { padding:0; }
 
-    /* Drug grid */
-    .drug-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin-top: 0.5em; }
-    .drug-card { background: #1a3a5c; border-radius: 10px; padding: 1em; text-align: center; }
-    .drug-name { font-weight: 700; font-size: 0.9em; color: #90caf9; margin-bottom: 0.5em; }
-    .dose { font-size: 0.75em; margin: 0.25em 0; }
-
-    /* Case boxes */
-    .case-box { background: #1a2a3a; border-left: 4px solid #64b5f6; border-radius: 6px; padding: 0.7em 1em; margin: 0.4em 0; font-size: 0.7em; text-align: left; }
-    .case-box.error { border-left-color: #ef5350; }
-    .case-box.correct { border-left-color: #4caf50; }
-    .case-question { font-size: 0.8em; color: #ffb74d; margin: 0.5em 0; font-weight: bold; }
-    .answer-reveal { background: #1a3a1a; border-left: 4px solid #4caf50; border-radius: 6px; padding: 0.6em 1em; font-size: 0.65em; margin-top: 0.5em; }
-    .ddi-alert { background: #3a1a1a; border-left: 4px solid #ef5350; border-radius: 6px; padding: 0.6em 1em; font-size: 0.65em; margin-top: 0.5em; color: #ef9a9a; }
-
-    /* Liver grid */
-    .liver-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; margin: 0.6em 0; }
-    .liver-card { border-radius: 8px; padding: 0.8em; text-align: center; font-size: 0.7em; position: relative; }
-    .liver-card.danger { background: #3a0d0d; border: 2px solid #c00; }
-    .liver-card.warn { background: #2a1a00; border: 2px solid #ff8f00; }
-    .liver-card.mild { background: #0d2a0d; border: 2px solid #388e3c; }
-    .card-label { font-size: 0.8em; font-weight: bold; margin-bottom: 0.3em; color: #aaa; }
-    .who-note { background: #1a2a3a; border-left: 4px solid #64b5f6; border-radius: 6px; padding: 0.5em 1em; font-size: 0.65em; margin-top: 0.5em; }
-
-    /* Two col */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; font-size: 0.65em; }
-    .col-card { background: #1a2a3a; border-radius: 8px; padding: 0.8em; }
-    .col-card.warn-card { background: #2a1a10; }
-    .col-title { font-weight: bold; color: #90caf9; margin-bottom: 0.4em; font-size: 1em; }
-    .col-card ul { margin: 0; padding-left: 1.2em; }
-    .col-card li { margin: 0.2em 0; }
-
-    /* PK table */
-    .pk-table { font-size: 0.65em; width: 100%; border-collapse: collapse; margin-top: 0.5em; }
-    .pk-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 4px; margin-bottom: 4px; text-align: center; }
-    .pk-row div { padding: 6px 8px; border-radius: 4px; }
-    .pk-row.header div { background: #1a3a5c; font-weight: bold; color: #90caf9; }
-    .pk-row.hydro div { background: #1e2d40; }
-    .pk-row.lipo div { background: #1a2010; }
-
-    /* Timeline */
-    .timeline { display: flex; gap: 0; margin: 0.8em 0; }
-    .phase { flex: 1; padding: 1em; text-align: center; font-size: 0.7em; position: relative; }
-    .phase.p4 { background: #1a3a5c; border-radius: 8px 0 0 8px; flex: 2; }
-    .phase.p2 { background: #0d2a0d; border-radius: 0 8px 8px 0; flex: 4; }
-    .phase-label { display: block; font-weight: bold; color: #90caf9; margin-bottom: 0.3em; font-size: 0.9em; }
-    .alt-note { background: #2a1a00; border-left: 4px solid #ff8f00; border-radius: 6px; padding: 0.5em 1em; font-size: 0.6em; margin-top: 0.5em; }
-
-    /* AI grid */
-    .ai-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8em; margin: 1em 0; }
-    .ai-card { background: #1a2a3a; border: 1px solid #1e3a5c; border-radius: 8px; padding: 0.8em; text-align: center; font-size: 0.65em; }
-
-    /* Critical list */
-    .critical-list { display: flex; flex-direction: column; gap: 0.5em; font-size: 0.7em; margin: 0.5em 0; }
-    .critical-item { background: #1a2a3a; border-left: 4px solid #64b5f6; border-radius: 6px; padding: 0.5em 1em; text-align: left; }
-
-    /* TDM result */
-    .tdm-result { background: #2a0d0d; border: 1px solid #c00; border-radius: 6px; padding: 0.5em 0.8em; margin-top: 0.5em; font-size: 0.85em; }
-
-    /* Take home message */
-    .thm-list { list-style: none; padding: 0; text-align: left; font-size: 0.65em; }
-    .thm-list li { background: #1a2a3a; border-left: 3px solid #90caf9; border-radius: 6px; padding: 0.5em 0.8em; margin: 0.3em 0; }
-
-    /* Gold note */
-    .gold-note { background: #2a1e00; border: 1px solid #bf8f00; border-radius: 6px; padding: 6px 12px; color: #ffcc02; font-weight: bold; }
-
-    /* Progress bar */
-    .reveal .progress { height: 3px; color: #90caf9; }
+    .reveal .progress { height:3px; color:var(--accent); }
+    .reveal .controls { color:var(--primary); }
+    .reveal .slide-number { color:var(--muted); font-size:.4em; }
   </style>
 </head>
 <body>
 <div class="reveal">
   <div class="slides">
-<section class="cover-slide" data-background-image="assets/slides/image1.png" data-background-opacity="0.18" data-background-size="cover">
-  <div class="cover-inner">
-    <div class="cover-badge">115年6月｜臨床藥學會雲嘉區雙月會</div>
-    <h1 class="cover-title">慢性腎臟病與透析患者之<br>抗結核藥物劑量調整<br>與臨床藥事照護</h1>
-    <p class="cover-subtitle">Dosage Adjustment of Anti-Tuberculosis Drugs in CKD and Dialysis Patients</p>
-    <div class="cover-presenter">
+
+<!-- 封面 -->
+<section class="cover" data-background-color="#FDFBF9">
+  <div class="cover-wrap">
+    <h1 class="cover-title">慢性腎臟病與透析患者之抗結核藥物<br>劑量調整與臨床藥事照護</h1>
+    <div class="cover-divider"></div>
+    <p class="cover-meta">115年6月臨床藥學會雲嘉區雙月會 <span>|</span> 115年06月</p>
+    <div class="presenter-card">
       <img src="assets/avatar.jpg" alt="張綜瑋 藥師" onerror="this.style.display='none'">
       <div>
-        <div class="cover-name">張綜瑋 藥師</div>
-        <div class="cover-org">彰化基督教醫療財團法人員林基督教醫院｜嘉南藥理大學</div>
+        <div class="presenter-name">張綜瑋 藥師</div>
+        <div class="presenter-org">
+          彰化基督教醫療財團法人 員林基督教醫院<br>
+          嘉南藥理大學 藥學系 <strong>兼任講師</strong>
+        </div>
       </div>
     </div>
   </div>
-</section>
-<section>
-  <h2>課程綱要</h2>
-  <div class="outline-grid">
-    <div class="outline-item">🧬 結核藥物特性</div>
-    <div class="outline-item">💊 抗肺結核藥物</div>
-    <div class="outline-item">🫁 腎功能調整</div>
-    <div class="outline-item">🫀 肝功能調整</div>
-    <div class="outline-item">⚖️ 體重與劑量</div>
-    <div class="outline-item">🦠 HIV 藥物交互作用</div>
-    <div class="outline-item">💉 移植藥物交互作用</div>
-    <div class="outline-item">🔬 潛伏結核</div>
-    <div class="outline-item">🤖 COVID 交互作用</div>
-  </div>
-  <p style="font-size:0.5em;color:#777;margin-top:0.8em">★ 新增：CRRT / ECMO 重症患者特殊考量</p>
-</section>
-<section>
-  <h2>結核病標準治療療程</h2>
-  <div class="timeline">
-  <div class="phase p4"><span class="phase-label">強化期 2 個月</span>INH + RMP + PZA + EMB</div>
-  <div class="phase p2"><span class="phase-label">維持期 4 個月</span>INH + RMP</div>
-</div>
-<div class="alt-note">延長方案（無法使用 Rifamycin）：強化 2 個月 + 維持 7 個月<br>→ 視同多重抗藥，治療期間顯著延長</div>
-</section>
-<section>
-  <h2>一線抗結核藥物特性</h2>
-  <p style="font-size:0.7em;text-align:center;color:#aaa">（詳見下方表格投影片）</p>
-</section>
-<section>
-  <h2 style="font-size:0.95em">二線結核藥物治療藥物特性</h2>
-  <div style="text-align:left;padding:0.5em 1em">
-    
-  </div>
-</section>
-<section data-background-image="assets/slides/image4.PNG" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image5.PNG" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section>
-  <h2 style="font-size:0.9em">孕婦避免</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image6.PNG" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2>潛伏結核感染（LTBI）治療劑量</h2>
-  <div class="drug-grid">
-  <div class="drug-card"><div class="drug-name">Isoniazid</div>
-    <div class="dose">每日：<strong>300 mg</strong></div>
-    <div class="dose">每週：<strong>900 mg</strong></div>
-  </div>
-  <div class="drug-card"><div class="drug-name">Rifapentine</div>
-    <div class="dose">每日：<strong>600 mg</strong></div>
-    <div class="dose">每週：<strong>900 mg</strong>（3HP 療程）</div>
-  </div>
-</div>
-</section>
-<section>
-  <h2>臨床常見劑量錯誤案例 1</h2>
-  <div class="case-box error">
-  <p>開立 <strong>Isoniazid/Rifapentine Tab 300mg/300mg  3# QD</strong></p>
-  <p style="color:#ef5350">⚠ 劑量錯誤：每日劑量過低</p>
-</div>
-<div class="case-box correct">
-  <p>✅ 藥師確認後修改為 <strong>1# QW</strong>（每週一次）</p>
-</div>
-</section>
-<section>
-  <h2>臨床常見劑量錯誤案例 2</h2>
-  <div class="case-box error">
-  <p>開立 <strong>Isoniazid/Rifapentine Tab 300mg/300mg  1# QD-PO  7tab</strong></p>
-  <p style="color:#ef5350">⚠ Rifapentine 劑量不足</p>
-</div>
-<div class="case-box correct">
-  <p>✅ 藥師確認後加開 <strong>Rifapentine 150mg 2# QD</strong></p>
-</div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">2003年 35%沒有體重記錄，結核藥物的劑量非常不一致
-2007 年-2010年一系列措施，2010年，96.5%有體重</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image8.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">更進階!!!如果可以，調查一下身高!!!!!!</p><p style="font-size:0.6em;margin:0.2em 0">使用複方藥物Rifinah150能達80%劑量符合率</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">In all three patients who developed drug resistance, rifampicin Cmax concentrations were low... These findings illustrate the importance of drug concentrations as predictors of clinical outcome.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image11.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">The alternative to TDM is to watch, wait, and hope for the best. It is common for patients to have their treatment regimens empirically extended when responses to treatment are delayed... prolonged treatment means prolonged expenditure, and failures and relapses mean considerably larger expenditures.</p><p style="font-size:0.6em;margin:0.2em 0">Patients with HIV infection... may have various forms of malabsorption... Intermittent dosing and low drug concentrations can be particularly dangerous in HIV-positive patients</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝、腎功能</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image12.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝、腎功能</p><p style="font-size:0.6em;margin:0.2em 0">J Infect Dis. 2015 Jun 15;211 Suppl 3(Suppl 3):S115-25.</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">J Infect Dis. 2015 Jun 15;211 Suppl 3(Suppl 3):S115-25.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝、腎功能</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image13.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝、腎功能</p><p style="font-size:0.6em;margin:0.2em 0">腎功能不好對TB具易感性</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝、腎功能</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image14.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝、腎功能</p><p style="font-size:0.6em;margin:0.2em 0">TB也會造成CKD病人腎損傷</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝、腎功能</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image15.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝、腎功能</p><p style="font-size:0.6em;margin:0.2em 0">Ren Fail. 2024 Dec;46(2):2392883.</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Ren Fail. 2024 Dec;46(2):2392883.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝、腎功能</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image16.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝、腎功能</p><p style="font-size:0.6em;margin:0.2em 0">CKD 與非 CKD 患者在藥物不良反應有差異</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.95em">肝、腎功能</h2>
-  <div style="text-align:left;padding:0.5em 1em">
-    <p style="font-size:0.65em;margin:0.25em 0;text-align:left">肝、腎功能</p><p style="font-size:0.65em;margin:0.25em 0;text-align:left">腎功能不全病人</p>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝、腎功能</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image18.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝、腎功能</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝、腎功能</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image19.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝、腎功能</p>
-      
-    </div>
+  <div class="cover-foot">
+    慢性腎臟病與透析患者之抗結核藥物劑量調整與臨床藥事照護
+    <span>|</span> 115年6月臨床藥學會雲嘉區雙月會 <span>|</span> 張綜瑋 藥師
   </div>
 </section>
 
-<!-- NEW: CKD/HD dosing table (ATS/CDC/IDSA) -->
-<section>
-  <h2 style="font-size:1.05em;margin-bottom:0.3em">CKD / 血液透析患者抗結核藥物劑量建議</h2>
-  <p style="font-size:0.52em;color:#90caf9;margin:0 0 0.4em">ATS / CDC / IDSA 建議 ｜ 適用 CrCl &lt;30 mL/min 或透析患者</p>
-  <table class="dose-table" style="font-size:0.52em;width:100%;border-collapse:collapse">
-    <thead>
-      <tr style="background:#1a3a5c;color:#fff">
-        <th style="padding:5px 6px;text-align:left">藥物</th>
-        <th style="padding:5px 6px;text-align:center;width:8%">調整<br>頻率</th>
-        <th style="padding:5px 6px;text-align:left">建議劑量（CrCl &lt;30 或 HD）</th>
-        <th style="padding:5px 6px;text-align:left">臨床注意事項</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr style="background:#1e2d3d"><td style="padding:4px 6px"><strong>Isoniazid (INH)</strong></td><td style="text-align:center;color:#4caf50;font-weight:bold">否</td><td>300 mg QD  /  900 mg 3x/週</td><td>⚕ 補充 Pyridoxine 50 mg/day</td></tr>
-      <tr style="background:#243040"><td style="padding:4px 6px"><strong>Rifampin (RIF)</strong></td><td style="text-align:center;color:#4caf50;font-weight:bold">否</td><td>600 mg QD  /  600 mg 3x/週</td><td>蛋白結合率 89%，透析不清除</td></tr>
-      <tr style="background:#1e2d3d"><td style="padding:4px 6px"><strong>Pyrazinamide (PZA)</strong></td><td style="text-align:center;color:#ef5350;font-weight:bold">是</td><td>25–35 mg/kg  每週 3 次（<span style="color:#ffb74d">透析後</span>）</td><td>代謝物（pyrazinoic acid）腎蓄積</td></tr>
-      <tr style="background:#243040"><td style="padding:4px 6px"><strong>Ethambutol (EMB)</strong></td><td style="text-align:center;color:#ef5350;font-weight:bold">是</td><td>20–25 mg/kg  每週 3 次（<span style="color:#ffb74d">透析後</span>）</td><td>80% 腎排泄；峰值目標 2–6 mg/L</td></tr>
-      <tr style="background:#1e2d3d"><td style="padding:4px 6px"><strong>Levofloxacin</strong></td><td style="text-align:center;color:#ef5350;font-weight:bold">是</td><td>750–1000 mg  每週 3 次（<span style="color:#ffb74d">透析後</span>）</td><td>高腎臟清除率；建議 TDM</td></tr>
-      <tr style="background:#243040"><td style="padding:4px 6px"><strong>Moxifloxacin</strong></td><td style="text-align:center;color:#4caf50;font-weight:bold">否</td><td>400 mg QD</td><td>非腎臟清除為主</td></tr>
-      <tr style="background:#1e2d3d"><td style="padding:4px 6px"><strong>Cycloserine</strong></td><td style="text-align:center;color:#ef5350;font-weight:bold">是</td><td>250 mg QD  /  500 mg 3x/週</td><td>神經毒性風險；密切監測</td></tr>
-      <tr style="background:#243040"><td style="padding:4px 6px"><strong>Streptomycin / Amikacin</strong></td><td style="text-align:center;color:#ef5350;font-weight:bold">是</td><td>15 mg/kg  每週 2–3 次（<span style="color:#ffb74d">透析後</span>）</td><td>腎毒性；聽力監測</td></tr>
-    </tbody>
-  </table>
-  <div class="gold-note" style="margin-top:0.5em;font-size:0.5em">
-    ★ 需調整頻率之藥物均應於透析後給予，以支援 DOT 並避免藥物被透析過早清除
-  </div>
-  <p style="font-size:0.42em;color:#777;text-align:right;margin-top:0.2em">ATS/CDC/IDSA. Am J Respir Crit Care Med. 2003;167:603–662</p>
-</section>
-
-
-<!-- NEW: CRRT/ECMO special considerations -->
-<section>
-  <h2 style="font-size:1em;margin-bottom:0.4em">重症患者抗結核藥物特殊考量：CRRT 與 ECMO</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;font-size:0.56em">
-    <div>
-      <div style="background:#1a3a5c;border-radius:6px;padding:6px 10px;font-weight:bold;margin-bottom:0.4em;font-size:1.05em">
-        連續性腎臟替代療法（CRRT）
-      </div>
-      <table style="width:100%;border-collapse:collapse">
-        <tr style="background:#1e2d40"><td style="padding:4px 6px;font-weight:bold;color:#90caf9;width:42%">清除效率</td><td style="padding:4px 6px">CVVHDF &gt; CVVH &gt; 間歇透析</td></tr>
-        <tr style="background:#243040"><td style="padding:4px 6px;font-weight:bold;color:#90caf9">親水性藥物<br><span style="font-size:0.85em;font-weight:normal">INH、EMB、PZA</span></td><td style="padding:4px 6px">CRRT 清除率較高<br>流速越快，清除越多</td></tr>
-        <tr style="background:#1e2d40"><td style="padding:4px 6px;font-weight:bold;color:#90caf9">親脂性藥物<br><span style="font-size:0.85em;font-weight:normal">RIF、Moxifloxacin</span></td><td style="padding:4px 6px">CRRT 清除有限</td></tr>
-        <tr style="background:#243040"><td style="padding:4px 6px;font-weight:bold;color:#90caf9">維持劑量</td><td style="padding:4px 6px">可能高於間歇透析建議<br>以 TDM 指引調整</td></tr>
-        <tr style="background:#1e2d40"><td style="padding:4px 6px;font-weight:bold;color:#90caf9">CRRT 中斷</td><td style="padding:4px 6px">濃度可能↑ → 暫降劑量<br>恢復後重新評估</td></tr>
-      </table>
-    </div>
-    <div>
-      <div style="background:#3a1a4a;border-radius:6px;padding:6px 10px;font-weight:bold;margin-bottom:0.4em;font-size:1.05em">
-        體外膜氧合（ECMO）
-      </div>
-      <table style="width:100%;border-collapse:collapse">
-        <tr style="background:#2a1a35"><td style="padding:4px 6px;font-weight:bold;color:#ce93d8;width:38%">藥動學改變</td><td style="padding:4px 6px">Vd ↑；管路吸附；CL 改變</td></tr>
-        <tr style="background:#341d40"><td style="padding:4px 6px;font-weight:bold;color:#ce93d8">Rifampin</td><td style="padding:4px 6px">血中濃度可能偏低<br>需 TDM，必要時增加劑量</td></tr>
-        <tr style="background:#2a1a35"><td style="padding:4px 6px;font-weight:bold;color:#ce93d8">Ethambutol</td><td style="padding:4px 6px">1000 mg/day 峰值約 2.3 mg/L<br>（目標 2–6 mg/L，處低端）</td></tr>
-        <tr style="background:#341d40"><td style="padding:4px 6px;font-weight:bold;color:#ce93d8">Isoniazid</td><td style="padding:4px 6px">撤除 ECMO 後峰值可↑約 66%<br>撤除時重新評估劑量</td></tr>
-        <tr style="background:#2a1a35"><td style="padding:4px 6px;font-weight:bold;color:#ce93d8">臨床原則</td><td style="padding:4px 6px">TDM 為必要工具<br>ECMO+CRRT 時影響最複雜</td></tr>
-      </table>
-    </div>
-  </div>
-  <div class="gold-note" style="margin-top:0.5em;font-size:0.48em">
-    ★ 缺乏標準化劑量指引 → TDM + PK/PD 模型 + 多專科合作（感染科、重症、腎臟科、臨床藥師）
-  </div>
-  <p style="font-size:0.42em;color:#777;text-align:right;margin-top:0.2em">ATS/CDC/IDSA 2003；Pharmacotherapy 2018；J Crit Care 2019；Clin Infect Dis 2021</p>
-</section>
-
-<section>
-  <h2 style="font-size:0.9em">Pyrazinamide肝毒性風險較高</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image20.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">Am J Respir Crit Care Med. 2008 Jun 15;177(12):1391-6.</p><p style="font-size:0.6em;margin:0.2em 0">Multivariable conditional logistic regression
-抗結核治療超過 12 週後哪些因素會顯著增加肝毒性的風險</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Am J Respir Crit Care Med. 2008 Jun 15;177(12):1391-6.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">肝功能差的人殺傷力更大，且更難恢復</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image21.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">J Clin Exp Hepatol. 2012 Sep 21;2(3):260–270.</p><p style="font-size:0.6em;margin:0.2em 0">正常肝功能</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">J Clin Exp Hepatol. 2012 Sep 21;2(3):260–270.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2>肝功能不全患者 — 藥物選擇策略</h2>
-  <div class="liver-grid">
-  <div class="liver-card danger"><div class="card-label">肝毒性最強</div>Pyrazinamide (PZA)</div>
-  <div class="liver-card warn"><div class="card-label">肝毒性次強</div>Isoniazid (INH)</div>
-  <div class="liver-card mild"><div class="card-label">肝毒性第三強</div>Rifampin (RIF)</div>
-</div>
-<div class="who-note">WHO 加藥回來的順序：RIF → INH → PZA<br>（先加肝毒性較低者）</div>
-<p style="font-size:0.55em;color:#aaa;margin-top:0.5em">WHO operational handbook on tuberculosis – Module 4: Treatment, 2022 update</p>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Child-Pugh應用於藥物選擇:依賴臨床判斷</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image24.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">J Clin Exp Hepatol. 2012 Sep 21;2(3):260–270.</p><p style="font-size:0.6em;margin:0.2em 0">用第二線藥物但治療比較久</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">J Clin Exp Hepatol. 2012 Sep 21;2(3):260–270.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Taiwan Guidelines for TB Diagnosis & Treatment .</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image26.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">肝功能<5倍且沒症狀
-肝功能<3倍且症狀輕微
-可先追蹤</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Taiwan Guidelines for TB Diagnosis & Treatment .</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2>肝功能異常時藥物調整策略（概念）</h2>
-  <div class="two-col">
-  <div class="col-card"><div class="col-title">各指引概念相似</div>
-    <ul><li>INH 具早期殺菌力 → 優先保留</li><li>為保護 RMP，避免抗藥性發展</li><li>PZA 肝毒性強 → 最後加回</li></ul>
-  </div>
-  <div class="col-card warn-card"><div class="col-title">不同指引細節不一致</div>
-    <ul><li>肝功能 &lt;5 倍且無症狀：可先追蹤</li><li>肝功能 &lt;3 倍有輕微症狀：可先追蹤</li><li>加藥順序需依臨床判斷</li></ul>
+<!-- 原始投影片（第2頁起，整頁嵌入） -->
+<section class="imgslide" data-background-image="assets/deck/slide02.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide03.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide04.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide05.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide06.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide07.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide08.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide09.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide10.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide11.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide12.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide13.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide14.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide15.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide16.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide17.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide18.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide19.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide20.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide21.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide22.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide23.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide24.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide25.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide26.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide27.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide28.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide29.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide30.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide31.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide32.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide33.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide34.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide35.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide36.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide37.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide38.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide39.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide40.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide41.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide42.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide43.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide44.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide45.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide46.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide47.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide48.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide49.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide50.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide51.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide52.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide53.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide54.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide55.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide56.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide57.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide58.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide59.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide60.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide61.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide62.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide63.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide64.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide65.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide66.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide67.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide68.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide69.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide70.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide71.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide72.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide73.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide74.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide75.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide76.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide77.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
+<section class="imgslide" data-background-image="assets/deck/slide78.png" data-background-size="contain" data-background-color="#FDFBF9"></section>
   </div>
 </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">相對於腎功能-肝功能介入系統不好輔助</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image28.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">臨床藥師  can help</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Biomed Pharmacother. 2023 Oct:166:115281.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image29.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">一樣劑量，在肥胖者可能藥效不夠</p><p style="font-size:0.6em;margin:0.2em 0">親水性藥物</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Biomed Pharmacother. 2023 Oct:166:115281.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Biomed Pharmacother. 2023 Oct:166:115281.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image30.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">親水性藥物使用IBW或ABW，親脂性TBW</p><p style="font-size:0.6em;margin:0.2em 0">使用Total body weight去計算劑量</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Biomed Pharmacother. 2023 Oct:166:115281.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">臨床案例:72.6 y/o Female 160cm 102.2kg</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image31.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      
-    </div>
-  </div>
-</section>
-<section data-background-image="assets/slides/image32.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image33.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section>
-  <h2 style="font-size:0.9em">劑量從900mg Q8H
-調整成750mg Q8H</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image34.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Antimicrob Agents Chemother. 2024 May 2;68(5):e0171923.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image35.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">脂溶性藥物會在脂肪中累積，導致半衰期延長、起效變慢。</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Antimicrob Agents Chemother. 2024 May 2;68(5):e0171923.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2>肥胖影響抗結核藥物動力學</h2>
-  <div class="pk-table">
-  <div class="pk-row header"><div>藥物特性</div><div>分布體積</div><div>劑量計算</div><div>注意事項</div></div>
-  <div class="pk-row hydro"><div>親水性<br>INH、EMB、PZA</div><div>改變不大</div><div>使用 IBW</div><div>用 TBW 可能過量</div></div>
-  <div class="pk-row lipo"><div>親脂性<br>RIF</div><div>↑ 顯著</div><div>使用 TBW<br>Max 600 mg</div><div>濃度可能偏低</div></div>
-</div>
-</section>
-<section>
-  <h2 style="font-size:0.95em">Sandford Guide Antimicrobial</h2>
-  <div style="text-align:left;padding:0.5em 1em">
-    
-  </div>
-</section>
-<section>
-  <h2>臨床案例：HIV 合併肺結核</h2>
-  <div class="case-box">
-  <p><strong>38 歲男性，92 kg，患有 HIV</strong></p>
-  <p>診斷活動性肺結核，MTB 全敏感</p>
-  <p>醫師給予：<strong>Rifater 5#QD，EMB 2#QD</strong></p>
-</div>
-<div class="case-question">❓ 劑量是否正確？</div>
-<p style="font-size:0.55em;color:#aaa;text-align:right">引用自113年結核病個案管理師教育訓練課程</p>
-</section>
-<section>
-  <h2 style="font-size:0.9em">臨床案例</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image36.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">引用自113年結核病個案管理師教育訓練課程（複訓）課程.</p><p style="font-size:0.6em;margin:0.2em 0">EMB成人口服每日劑量15（15-20）mg/kg-  92*15=1380/400= 3.45 tab
-
-若有身高175公分</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">臨床案例</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image37.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Viruses. 2024 Feb 21;16(3):321.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image39.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">若免疫反應正常 → 維持 Latent TB infection</p><p style="font-size:0.6em;margin:0.2em 0">若 CD4+ T cell 功能喪失 →
- Granuloma 崩解 → Active TB infection</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Viruses. 2024 Feb 21;16(3):321.</p>
-    </div>
-  </div>
-</section>
-<section data-background-image="assets/slides/image41.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section>
-  <h2 style="font-size:0.9em">EACS Guidelines – Drug–Drug Interactions: Anti-Tuberculosis Drugs and ARVs</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image42.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Viruses. 2024 Mar 23;16(4):494.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image43.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Viruses. 2024 Mar 23;16(4):494.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Viruses. 2024 Mar 23;16(4):494.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image44.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Viruses. 2024 Mar 23;16(4):494.</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Taiwan Guidelines for TB Diagnosis & Treatment .</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image45.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Taiwan Guidelines for TB Diagnosis & Treatment .</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Taiwan Guidelines for TB Diagnosis & Treatment .</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image46.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">Rifampin</p><p style="font-size:0.6em;margin:0.2em 0">Rifabutin</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Taiwan Guidelines for TB Diagnosis & Treatment .</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Taiwan Guidelines for TB Diagnosis & Treatment .</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image47.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Taiwan Guidelines for TB Diagnosis & Treatment .</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Taiwan Guidelines for TB Diagnosis & Treatment .</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image47.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Taiwan Guidelines for TB Diagnosis & Treatment .</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2>Rifabutin–Cobicistat 藥物交互作用案例</h2>
-  <div class="case-box">
-  <p><strong>43 歲女性，HIV/AIDS 併發肺結核</strong></p>
-  <p>ART：Dolutegravir + <strong>Darunavir/Cobicistat</strong> + FTC/TDF</p>
-  <p>TB：Rifampin → 因與 PI 交互作用，改用 <strong>Rifabutin</strong></p>
-</div>
-<div class="ddi-alert">
-  ⚠ Cobicistat 為 CYP3A4 抑制劑 → 顯著升高 Rifabutin 血中濃度
-</div>
-<p style="font-size:0.55em;color:#aaa;text-align:right">Case Rep Ophthalmol 2020;11:156–160</p>
-</section>
-<section data-background-color="#0a0a1a">
-  <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center">
-    <img src="assets/slides/image48.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px"><img src="assets/slides/image49.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px">
-  </div>
-</section>
-<section data-background-color="#0a0a1a">
-  <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center">
-    <img src="assets/slides/image50.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px"><img src="assets/slides/image51.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px">
-  </div>
-</section>
-<section data-background-image="assets/slides/image52.png" data-background-opacity="0.1" data-background-size="cover">
-  <h2>Rifabutin 毒性：葡萄膜炎案例</h2>
-  <div class="side-img-layout">
-  <div class="side-text">
-    <p>服用 Rifabutin + Cobicistat <strong>第 14 天</strong></p>
-    <ul>
-      <li>嚴重視力模糊、眼球疼痛、光敏感</li>
-      <li>雙眼葡萄膜炎（anterior uveitis）</li>
-      <li>玻璃體混濁 + 視網膜炎</li>
-    </ul>
-    <div class="tdm-result">
-      TDM：Rifabutin <strong style="color:#c00">416 ng/mL</strong><br>
-      （參考值 50–150 ng/mL）
-    </div>
-  </div>
-</div>
-</section>
-<section>
-  <h2>臨床案例：Dolutegravir + Rifampin</h2>
-  <div class="case-box">
-  <p><strong>Dovato</strong>（Dolutegravir/Lamivudine）或<br>
-  <strong>Triumeq</strong>（DTG/ABC/3TC）</p>
-  <p>與 <strong>RIF 併用</strong>時臨床上如何處理？</p>
-</div>
-<div class="answer-reveal">
-  ✅ 解法：<strong>增加 DTG 劑量！</strong><br>
-  DTG 50mg QD → DTG 50mg BID（台灣結核病診治指引）
-</div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Taiwan Guidelines for TB Diagnosis & Treatment .</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image47.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">增加DTG劑量!</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Taiwan Guidelines for TB Diagnosis & Treatment .</p>
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">資源匱乏地區有時候很難做到</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image53.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">Cape Town 
-South Africa</p>
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">Pharmaceuticals (Basel). 2024 Aug 6;17(8):1035.</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image54.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      <p style="font-size:0.6em;margin:0.2em 0">Covid-19
-藥物可能是被害者
-也可能是加害者</p>
-      <p style="font-size:0.45em;color:#777;text-align:right;margin-top:0.5em">Pharmaceuticals (Basel). 2024 Aug 6;17(8):1035.</p>
-    </div>
-  </div>
-</section>
-<section data-background-image="assets/slides/image55.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image56.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-color="#0a0a1a">
-  <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center">
-    <img src="assets/slides/image57.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px"><img src="assets/slides/image58.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px">
-  </div>
-</section>
-<section data-background-image="assets/slides/image59.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image60.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image61.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-color="#0a0a1a">
-  <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center">
-    <img src="assets/slides/image62.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px"><img src="assets/slides/image63.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px"><img src="assets/slides/image64.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px">
-  </div>
-</section>
-<section data-background-image="assets/slides/image65.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-color="#0a0a1a">
-  <p style="color:#444;font-size:0.7em">Slide 66</p>
-</section>
-<section data-background-image="assets/slides/image67.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-color="#0a0a1a">
-  <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center">
-    <img src="assets/slides/image68.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px"><img src="assets/slides/image69.png" style="max-height:55vh;max-width:48%;object-fit:contain;border-radius:4px">
-  </div>
-</section>
-<section data-background-image="assets/slides/image70.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image71.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image72.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image73.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section>
-  <h2 style="font-size:0.9em">UpToDate-Drug interaction</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image74.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      
-    </div>
-  </div>
-</section>
-<section>
-  <h2 style="font-size:0.9em">DynaMed-Drug interaction</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;align-items:start">
-    <div>
-      <img src="assets/slides/image75.png" style="max-width:100%;max-height:65vh;object-fit:contain;border-radius:6px;border:1px solid #333">
-    </div>
-    <div style="text-align:left">
-      
-      
-    </div>
-  </div>
-</section>
-<section data-background-image="assets/slides/image78.png" data-background-opacity="0.1" data-background-size="cover">
-  <h2>Take Home Message</h2>
-  <ul class="thm-list">
-  <li>📋 依<strong>衛福部疾管署結核病診治指引</strong>為基準</li>
-  <li>🫁 <strong>PZA、EMB</strong> 腎功能不全須調整（週三次，透析後）</li>
-  <li>🫀 <strong>PZA、INH、RIF</strong> 肝毒性較強，注意監測</li>
-  <li>⚖️ 肥胖患者：<strong>RIF 用 TBW（Max 600mg）；EMB/INH/PZA 用 IBW</strong></li>
-  <li>🦠 注意 B 肝、C 肝、HIV、抗 COVID 藥物交互作用</li>
-  <li>👥 建立良好團隊（個管師、藥師、護理師、專科護理師）</li>
-</ul>
-</section>
-<section data-background-image="assets/slides/image79.png" data-background-size="contain" data-background-color="#0a0a1a">
-</section>
-<section data-background-image="assets/slides/image80.png" data-background-opacity="0.1" data-background-size="cover">
-  <h2>AI & Machine Learning in TB Medication</h2>
-  <div class="ai-grid">
-  <div class="ai-card">🩻 X 光診斷輔助</div>
-  <div class="ai-card">🧬 抗藥性預測</div>
-  <div class="ai-card">🏥 GWAS（Taiwan Biobank）</div>
-  <div class="ai-card">💊 新型藥物開發</div>
-  <div class="ai-card">⚠️ 副作用預測</div>
-</div>
-</section>
-<section>
-  <h2>TB Medication in Critical Illness</h2>
-  <div class="critical-list">
-  <div class="critical-item">⚖️ Body weight change → PK 改變</div>
-  <div class="critical-item">⚠️ Unpredictable ADR &amp; subtherapeutic drug levels</div>
-  <div class="critical-item">🚫 Unable to swallow → decreased efficacy</div>
-  <div class="critical-item" style="background:#1a3a1a;border-color:#4caf50;color:#4caf50;font-size:1.2em;font-weight:bold">
-    👨‍⚕️ Hire a Pharmacist!
-  </div>
-</div>
-</section>
-  </div>
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script>
 Reveal.initialize({
@@ -886,7 +163,7 @@ Reveal.initialize({
   backgroundTransition: 'fade',
   width: 1280,
   height: 720,
-  margin: 0.04,
+  margin: 0,
   plugins: []
 });
 </script>

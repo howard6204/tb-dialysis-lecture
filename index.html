@@ -37,34 +37,32 @@
     /* ── Hero ── */
     .hero {
       background: linear-gradient(135deg, #C8D5DF 0%, #D5E0D5 60%, #DDD5CC 100%);
-      padding: 56px 32px 48px;
+      padding: 80px 48px 64px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .hero .badge {
       display: inline-block;
       background: rgba(61,90,120,0.15);
       color: var(--primary);
-      font-size: 0.78em;
+      font-size: 0.85em;
       font-weight: 700;
       letter-spacing: 0.08em;
-      padding: 4px 14px;
+      padding: 5px 16px;
       border-radius: 20px;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
     }
     .hero h1 {
       color: var(--primary);
-      font-size: 2.2em;
-      line-height: 1.25;
-      margin-bottom: 10px;
+      font-size: 3.4em;
+      line-height: 1.28;
+      margin-bottom: 36px;
       font-weight: 700;
+      max-width: 940px;
     }
-    .hero h2 {
-      color: #5A6A58;
-      font-size: 1.05em;
-      font-weight: 400;
-      margin-bottom: 28px;
-    }
-
     /* ── 演講者卡片 ── */
     .presenter {
       display: inline-flex;
@@ -89,7 +87,7 @@
     .main {
       max-width: 760px;
       margin: 0 auto;
-      padding: 48px 24px 80px;
+      padding: 36px 24px 48px;
       flex: 1;
       width: 100%;
     }
@@ -132,28 +130,29 @@
       background: #fff;
       border: 2px solid #D5DDE5;
       border-radius: 12px;
-      padding: 28px 28px 24px;
-      margin-bottom: 32px;
+      padding: 26px 28px 22px;
+      margin-bottom: 36px;
+      text-align: left;
       box-shadow: var(--shadow);
     }
     .form-box h3 {
       color: var(--primary);
-      font-size: 1.1em;
+      font-size: 1.05em;
       margin-bottom: 6px;
-      text-align: left;
     }
     .form-box p {
-      font-size: 0.85em;
+      font-size: 0.84em;
       color: #666;
       margin-bottom: 18px;
-      text-align: left;
     }
     .form-row {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .form-row input[type="email"] {
       flex: 1;
+      min-width: 200px;
       padding: 11px 14px;
       border: 1.5px solid #C8D0D8;
       border-radius: 7px;
@@ -164,7 +163,7 @@
     }
     .form-row input[type="email"]:focus { border-color: var(--primary); }
     .form-row button {
-      padding: 11px 20px;
+      padding: 11px 22px;
       background: var(--accent);
       color: #fff;
       border: none;
@@ -180,14 +179,12 @@
     .form-row button:disabled { opacity: 0.5; cursor: default; }
     .form-msg {
       margin-top: 10px;
-      font-size: 0.85em;
+      font-size: 0.84em;
       min-height: 20px;
-      text-align: left;
     }
-    .form-msg.ok   { color: var(--accent); }
-    .form-msg.err  { color: #c0392b; }
+    .form-msg.ok  { color: var(--accent); }
+    .form-msg.err { color: #c0392b; }
 
-    /* ── 慢慢來藥師 社群 ── */
     .social-block { text-align: center; margin-top: 16px; }
     .social-block .social-label {
       font-size: 0.95em;
@@ -243,8 +240,7 @@
 <!-- Hero -->
 <div class="hero">
   <div class="badge">115年6月臨床藥學會雲嘉區雙月會</div>
-  <h1>慢性腎臟病與透析患者之抗結核藥物劑量調整與臨床藥事照護</h1>
-  <h2>守住防線：腎臟病患者抗結核用藥的臨床決策與藥事照護</h2>
+  <h1>慢性腎臟病與透析患者之抗結核藥物<br>劑量調整與臨床藥事照護</h1>
   <div class="presenter">
     <img src="assets/avatar.jpg" alt="張綜瑋 藥師" onerror="this.style.display='none'">
     <div class="presenter-info">
@@ -262,15 +258,13 @@
 
   <!-- 快速連結 -->
   <div class="cta-row">
-    <a href="slides.html" class="btn btn-primary"><i class="fa-solid fa-display"></i> 觀看線上簡報</a>
-    <a href="handout.html" class="btn btn-outline"><i class="fa-solid fa-book-open"></i> 閱讀線上講義</a>
-    <a href="透析患者抗結核用藥_簡報.pptx" class="btn btn-outline" download><i class="fa-regular fa-file-powerpoint"></i> 下載 PPTX</a>
+    <a href="slides.html" class="btn btn-primary">觀看線上簡報</a>
   </div>
 
   <!-- 講義領取 -->
   <div class="form-box">
     <h3>📄 領取課程講義 PDF</h3>
-    <p>輸入 Email 後可立即下載完整講義 PDF 及抗結核藥物調整簡表。</p>
+    <p>輸入 Email 後可立即下載本場次的課程講義 PDF。</p>
     <div class="form-row">
       <input type="email" id="email-input" placeholder="your@email.com">
       <button id="submit-btn" onclick="submitEmail()">下載講義</button>
@@ -304,7 +298,7 @@
 </footer>
 
 <script>
-  // GAS 記錄 Email Web App URL
+  // ── GAS 記錄 Email 的 Web App URL（部署後替換）──
   const GAS_URL = 'YOUR_GAS_WEBAPP_URL';
 
   function submitEmail() {
@@ -319,29 +313,25 @@
       return;
     }
 
-    // 觸發講義下載
-    [
-      { href: '透析患者抗結核用藥_講義.md', name: '透析患者抗結核用藥_講義.md' },
-      { href: '透析患者抗結核用藥_簡報.pptx', name: '透析患者抗結核用藥_簡報.pptx' }
-    ].forEach(({ href, name }) => {
-      const a = document.createElement('a');
-      a.href = href; a.download = name;
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    });
+    // 觸發下載
+    const a = document.createElement('a');
+    a.href = 'handout.pdf';
+    a.download = '慢性腎臟病與透析患者抗結核用藥_講義.pdf';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
 
     msg.className = 'form-msg ok';
-    msg.textContent = '✓ 正在下載講義與投影片檔案，請稍候…';
+    msg.textContent = '✓ 正在下載課程講義 PDF，請稍候…';
     btn.disabled = true;
     input.value = '';
 
-    // 背景記錄 Email
+    // 背景記錄 Email（失敗不影響下載）
     if (GAS_URL !== 'YOUR_GAS_WEBAPP_URL') {
       fetch(GAS_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email,
-          course: '透析患者抗結核用藥',
+          course: '慢性腎臟病與透析患者之抗結核藥物',
           time: new Date().toISOString(),
         }),
       }).catch(() => {});
@@ -350,9 +340,9 @@
     setTimeout(() => { btn.disabled = false; }, 3000);
   }
 
-  // Enter 鍵送出
   document.getElementById('email-input')
     .addEventListener('keydown', e => { if (e.key === 'Enter') submitEmail(); });
 </script>
+
 </body>
 </html>
