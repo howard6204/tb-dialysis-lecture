@@ -298,8 +298,8 @@
 </footer>
 
 <script>
-  // ── GAS 記錄 Email 的 Web App URL ──
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbyiSAV9asgWMZQlD854uFdPQGdfqjGZXNyMdfP7n92qM2vuwF9rfW6iOctXocnFC1-A/exec';
+  // 講義檔名 = 完整課程標題
+  const PDF_NAME = '慢性腎臟病與透析患者之抗結核藥物劑量調整與臨床藥事照護.pdf';
 
   function submitEmail() {
     const input = document.getElementById('email-input');
@@ -313,25 +313,10 @@
       return;
     }
 
-    // 先背景記錄 Email：用 sendBeacon（射後不理，不跟隨轉址、絕不影響頁面或下載）
-    if (GAS_URL && GAS_URL.indexOf('script.google.com') > -1) {
-      try {
-        const payload = JSON.stringify({
-          email,
-          course: '慢性腎臟病與透析患者之抗結核藥物',
-          time: new Date().toISOString(),
-        });
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(GAS_URL, new Blob([payload], { type: 'text/plain;charset=UTF-8' }));
-        }
-      } catch (e) { /* 記錄失敗不影響下載 */ }
-    }
-
-    // 觸發下載（同源檔案，直接下載不導頁）
+    // 純同源下載：直接點 a[download]，不連任何外部網址（避免轉址迴圈）
     const a = document.createElement('a');
     a.href = 'handout.pdf';
-    a.download = '慢性腎臟病與透析患者抗結核用藥_講義.pdf';
-    a.rel = 'noopener';
+    a.download = PDF_NAME;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
 
     msg.className = 'form-msg ok';
