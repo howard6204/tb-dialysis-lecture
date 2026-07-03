@@ -1,4 +1,17 @@
 node_modules/
 .DS_Store
 .cache/
+.cache_chrome/
 .wrangler/
+
+# 敏感資訊：token 與中央總表 Sheet ID，不進公開 repo
+gas-logger/secrets.gs
+gas-logger/.clasp.json
+gas-logger/中央講義領取總表_說明.md
+部署與維護說明.md
+
+# 講義 PDF 建置中間產物
+assets/deck2/
+_slides_full.pdf
+handout_full.pdf
+_dbg_handout.txt

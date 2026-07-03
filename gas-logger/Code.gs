@@ -1,5 +1,5 @@
 // 中央講義領取記錄器（所有演講共用同一張總表）
-// 容器綁定試算表：13SmRlC3oEN7j7V17BWPWFJV3tqzNKuggob-cWi-dXRs
+// 容器綁定試算表（Sheet ID 見本機「中央講義領取總表_說明.md」，勿寫進公開 repo）
 // 部署：執行身分=我、誰可存取=任何人
 //
 // 用法：各演講網站 POST（sendBeacon, text/plain）一段 JSON：
@@ -40,7 +40,27 @@ function doPost(e) {
   }
 }
 
+// CLEAR_TOKEN 定義在 secrets.gs（不進 git；GAS 專案內各 .gs 檔共享全域）
+// secrets.gs 不存在時 clear 端點自動停用。
+
 function doGet(e) {
+  // ?clear=<token> → 清除所有資料列（保留標題），用來清測試資料
+  const clearToken = (typeof CLEAR_TOKEN !== 'undefined') ? CLEAR_TOKEN : null;
+  if (clearToken && e && e.parameter && e.parameter.clear === clearToken) {
+    try {
+      const sheet = getSheet_();
+      const last = sheet.getLastRow();
+      const n = last - 1;
+      if (n > 0) sheet.deleteRows(2, n);
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: true, cleared: n }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } catch (err) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ ok: false, error: err.message }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
   // ?count=1 → 回傳目前資料列數，用來驗證寫入是否成功
   if (e && e.parameter && e.parameter.count) {
     try {
